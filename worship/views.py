@@ -1,12 +1,8 @@
-from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-
-from song.models import Song
+from song.models import Song, Category
 from django.template import loader
 from django.db.models import Q
-# Create your views here.
-
 
 @csrf_exempt
 def index(request):
@@ -23,7 +19,7 @@ def index(request):
     template = loader.get_template('worship/index.html')
 
     context = {
-        'song_list': song_list
+        'song_list': song_list,
     }
 
     return HttpResponse(template.render(context, request))
