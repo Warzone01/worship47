@@ -292,7 +292,7 @@
 							<div class="blog-wrapper">
 
                             {% if song_list %}
-                                {% for Song in song_list %}
+                                {% for song in song_list %}
 								<div class="blog-item">
 								<hr>
 									<div class="blog-media">
@@ -308,18 +308,18 @@
 										<div class="row">
 										
 											<div class="col-xs-12 col-sm-12 col-md-5 mb-20-sm">
-												<h3><a href="/song/{{ Song.id }}/">{{ Song.title }}</a></h3>
-                                                <h6>{{ Song.title_eng }}</h6>
+												<h3><a href="/song/{{ song.id }}/">{{ song.title }}</a></h3>
+                                                <h6>{{ song.title_eng }}</h6>
 												<ul class="blog-meta clearfix">
-													<li><div><i class="fa fa-folder-open"></i>  <a href="#">{{ Song.category }}</a></div></li>
+													<li><div><i class="fa fa-folder-open"></i>  <a href="#">{{ song.category }}</a></div></li>
 												</ul>
 											</div>
 											
 											<div class="col-xs-12 col-sm-12 col-md-7">
 												<div class="blog-entry">  
-													<p>{{ Song.text | safe | linebreaks| truncatechars_html:100 }}</p>
+													<p>{{ song.text | safe | linebreaks| truncatechars_html:100 }}</p>
 												</div>
-												<a href="/song/{{ Song.id }}/" class="btn btn-primary btn-sm">Открыть <i class="fa fa-long-arrow-right"></i></a>
+												<a href="/song/{{ song.id }}/" class="btn btn-primary btn-sm">Открыть <i class="fa fa-long-arrow-right"></i></a>
 												
 											</div>
 
@@ -407,10 +407,9 @@
 										<h4 class="sidebar-title">Категории</h4>
 										<div class="sidebar-module-inner">
 											<ul class="sidebar-category">
-												<li><a href="#">Основные</a></li>
-												<li><a href="#">Детские</a></li>
-												<li><a href="#">Рождественские</a></li>
-                                                <li><a href="#">Пасхальные</a></li>
+                                                {% for categ in categs %}
+                                                    <li><a href="/song/categ/{{ categ.slug }}">{{ categ.name }}</a></li>
+                                                {% endfor %}
 											</ul>
 										</div>
 									</div>

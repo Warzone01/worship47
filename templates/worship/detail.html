@@ -377,10 +377,9 @@
 										<h4 class="sidebar-title">Категории</h4>
 										<div class="sidebar-module-inner">
 											<ul class="sidebar-category">
-												<li><a href="#">Основные</a></li>
-												<li><a href="#">Детские</a></li>
-												<li><a href="#">Рождественские</a></li>
-												<li><a href="#">Пасхальные</a></li>
+												{% for categ in categs %}
+                                                    <li><a href="/song/categ/{{ categ.slug }}">{{ categ.name }}</a></li>
+                                                {% endfor %}
 											</ul>
 										</div>
 									</div>

@@ -4,22 +4,15 @@ from song.models import Song, Category
 from django.template import loader
 from django.db.models import Q
 
+
 @csrf_exempt
 def index(request):
-    if request.method == 'GET':
-        search = request.GET.get('search', '')
-        print(search)
-        if search:
-            song_list = Song.objects.filter(Q(title__icontains=search) | Q(text__icontains=search)).order_by('-category', 'title')
-        else:
-            song_list = Song.objects.none()
-    else:
-        song_list = Song.objects.all().order_by('-category', 'title')
-
     template = loader.get_template('worship/index.html')
+    categs = Category.objects.all()
 
     context = {
-        'song_list': song_list,
+        'categs': categs,
+        # 'song_list': song_list,
     }
 
     return HttpResponse(template.render(context, request))

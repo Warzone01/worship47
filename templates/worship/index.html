@@ -363,46 +363,47 @@
 						</div>
 						
 						<div class="row gap-20 mb-70">
-						
+
+                        {% for categ in categs %}
 							<div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url('{%  static 'images/category/01.jpg' %}');">
-									<a href="/song/{{ Song.category }}/">
+								<div class="category-image-bg" style="background-image:url({{ categ.image.url }});">
+									<a href="/song/categ/{{ categ.slug }}/">
 										<span class="text">
-											Основные
+											{{ categ.name }}
 										</span>
 									</a>
 								</div>
 							</div>
-
-                            <div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url('{%  static 'images/category/01.jpg' %}');">
-									<a href="#">
-										<span class="text">
-											Детские
-										</span>
-									</a>
-								</div>
-							</div>
-
-                            <div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url('{%  static 'images/category/01.jpg' %}');">
-									<a href="#">
-										<span class="text">
-											Рождественские
-										</span>
-									</a>
-								</div>
-							</div>
-
-                            <div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url('{%  static 'images/category/01.jpg' %}');">
-									<a href="#">
-										<span class="text">
-											Пасхальные
-										</span>
-									</a>
-								</div>
-							</div>
+                        {% endfor %}
+{#                            <div class="col-xss-12 col-xs-6 col-sm-6">#}
+{#								<div class="category-image-bg" style="background-image:url('{%  static 'images/category/01.jpg' %}');">#}
+{#									<a href="#">#}
+{#										<span class="text">#}
+{#											Детские#}
+{#										</span>#}
+{#									</a>#}
+{#								</div>#}
+{#							</div>#}
+{##}
+{#                            <div class="col-xss-12 col-xs-6 col-sm-6">#}
+{#								<div class="category-image-bg" style="background-image:url('{%  static 'images/category/01.jpg' %}');">#}
+{#									<a href="#">#}
+{#										<span class="text">#}
+{#											Рождественские#}
+{#										</span>#}
+{#									</a>#}
+{#								</div>#}
+{#							</div>#}
+{##}
+{#                            <div class="col-xss-12 col-xs-6 col-sm-6">#}
+{#								<div class="category-image-bg" style="background-image:url('{%  static 'images/category/01.jpg' %}');">#}
+{#									<a href="#">#}
+{#										<span class="text">#}
+{#											Пасхальные#}
+{#										</span>#}
+{#									</a>#}
+{#								</div>#}
+{#							</div>#}
 						</div>
 						</div>
 

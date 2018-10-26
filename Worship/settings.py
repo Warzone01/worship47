@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'worship.apps.WorshipConfig',
-    'song.apps.SongConfig',
+    'worship',
+    'song',
 ]
 
 MIDDLEWARE = [
