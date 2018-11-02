@@ -11,13 +11,13 @@ from django.db.models import Q
 def list(request, categ_slug=''):
     song_list = Song.objects.all().order_by('-category', 'title')
     print(song_list)
-    # if request.method == 'GET':
-    #     search = request.GET.get('search', '')
-    #     print(search)
-    #     if search:
-    #         song_list = song_list.filter(Q(title__icontains=search) | Q(text__icontains=search))
-    #     else:
-    #         song_list = Song.objects.none()
+    if request.method == 'POST':
+        search = request.POST.get('search', '')
+        print(search)
+        if search:
+            song_list = song_list.filter(Q(title__icontains=search) | Q(text__icontains=search))
+        else:
+            song_list = Song.objects.none()
 
     if categ_slug:
         categ = Category.objects.get(slug=categ_slug)

@@ -241,20 +241,7 @@
 					<div class="pull-right">
 						<div class="navbar-mini">
 							<ul class="clearfix">
-								<li class="dropdown visible-xs">
-									<a id="currncy-language-dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-										<i class="fa fa-cog"></i>
-									</a>
-									<ul class="dropdown-menu" aria-labelledby="language-dropdown">
-										<li><a href="#"><i class="ion-social-usd"></i> Dollar</a></li>
-										<li><a href="#"><i class="ion-social-euro"></i> Europe</a></li>
-										<li><a href="#"><i class="ion-social-yen"></i> Yen</a></li>
-										<li class="divider"></li>
-										<li><a href="#">English</a></li>
-										<li><a href="#">France</a></li>
-										<li><a href="#">Japanese</a></li>
-									</ul>
-								</li>
+
 								<li class="user-action">
 									<a data-toggle="modal" href="#loginModal" class="btn">Вход/регистрация</a>
 								</li>
@@ -287,7 +274,7 @@
 								<p class="p-title">Если вы забыли название песни, просто наберите любые слова песни в поиске!</p>
 							</div>
 						</div>
-						<form action="/song/" method="get">
+						<form action="/song/" method="POST">
 {#                            {% csrf_token %}#}
                             <div class="col-md-8 col-md-offset-2">
 
@@ -304,7 +291,9 @@
                                                     </button>
 
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="mainSearchDropdown">
-                                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)">Основные</a></li>
+                                                        {% for category in categs %}
+                                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)">{{ category.name }}</a></li>
+                                                        {% endfor %}
                                                     </ul>
 
 {#                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="mainSearchDropdown">#}
@@ -323,7 +312,7 @@
 
                                     </div><!-- /input-group -->
 
-    								<button class="btn btn-primary btn-block bt visible-xss">Search Image</button>
+    								<button class="btn btn-primary btn-block bt visible-xss">Поиск</button>
 
                                 </div>
 
@@ -366,7 +355,7 @@
 
                         {% for categ in categs %}
 							<div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url({{ categ.image.url }});">
+								<div class="category-image-bg" style="background-image:url(/static/images/{{ categ.image.url }});">
 									<a href="/song/categ/{{ categ.slug }}/">
 										<span class="text">
 											{{ categ.name }}
