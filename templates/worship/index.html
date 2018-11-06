@@ -282,6 +282,7 @@
 
                                     <div class="input-group bg-change-focus-addclass">
                                             <input  id="search" type="text" class="form-control" placeholder="Начните поиск прямо сейчас" value="{{ current_name }}" name="search">
+                                            <input  id="categ" type="text" value = "" hidden name="categ">
                                             <div class="input-group-btn dropdown-select">
                                                 <div class="dropdown dropdown-select">
 
@@ -291,8 +292,8 @@
                                                     </button>
 
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="mainSearchDropdown">
-                                                        {% for category in categs %}
-                                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)">{{ category.name }}</a></li>
+                                                        {% for categ in categs %}
+                                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" data-value="{{ categ.id }}">{{ categ.name }}</a></li>
                                                         {% endfor %}
                                                     </ul>
 

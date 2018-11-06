@@ -13,15 +13,26 @@ def list(request, categ_slug=''):
     print(song_list)
     if request.method == 'POST':
         search = request.POST.get('search', '')
+        categ = request.POST.get('categ', '')
         print(search)
         if search:
-            song_list = song_list.filter(Q(title__icontains=search) | Q(text__icontains=search))
+            if categ:
+                song_list = song_list.filter(category_id=categ)
+            song_list = song_list.filter(
+                Q(title__icontains=search) |
+                Q(title_eng__icontains=search)|
+                Q(text_eng__icontains=search)|
+                Q(text__icontains=search)
+            )
+
         else:
             song_list = Song.objects.none()
+
 
     if categ_slug:
         categ = Category.objects.get(slug=categ_slug)
         song_list = song_list.filter(category=categ)
+
 
     print(song_list)
     categs = Category.objects.all()

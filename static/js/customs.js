@@ -69,6 +69,8 @@ jQuery(function($) {
 	 $(this).parents('.dropdown-menu').find('li').removeClass('active');
 	 $(this).parent('li').addClass('active');
 
+	 $("#categ").val($(this).data("value"));
+
 	 //Displays selected text on dropdown-toggle button
 	 $(this).parents('.dropdown-select').find('.dropdown-toggle').html(target + ' <span class="caret"></span>');
 	});
