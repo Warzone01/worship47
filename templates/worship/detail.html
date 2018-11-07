@@ -301,16 +301,29 @@
 										<h2 align="center">{{ info.title }}</h2>
                                         <h3 align="center">{{ info.title_eng }}</h3>
 
-										<div class="blog-entry">
-                                            <hr>
-                                            <p align="center">Русский текст</p>
-											<h4 align="center">{{ info.text | safe | linebreaks }}</h4>
-                                            <hr>
-                                            <p align="center">Английский текст</p>
-                                            <h4 align="center">{{ info.text_eng| safe | linebreaks }}</h4>
-										</div>
+                                        
+										<ul class="nav nav-tabs">
+                                            <li class="active"><a data-toggle="tab" href="#home">Русский</a></li>
+                                            <li><a data-toggle="tab" href="#menu1">Английский</a></li>
+                                            <li><a data-toggle="tab" href="#menu2">Аккорды</a></li>
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            <div id="home" class="tab-pane fade in active">
+                                                <p></p>
+                                                <h4 align="center">{{ info.text | safe | linebreaks }}</h4>
+                                            </div>
+                                            <div id="menu1" class="tab-pane fade">
+                                                <p></p>
+                                                <h4 align="center">{{ info.text_eng | safe | linebreaks }}</h4>
+                                            </div>
+                                            <div id="menu2" class="tab-pane fade">
+                                                <p></p>
+                                                <h4 align="center">{{ info.accords | safe | linebreaks }}</h4>
+                                            </div>
+                                        </div>
 									</div>
-								
+
 {#									<div class="blog-extra">#}
 {#										<div class="row">#}
 {#											<div class="col-xs-12 col-sm-6 col-md-7 xs-mb">#}

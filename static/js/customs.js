@@ -249,8 +249,8 @@ jQuery(function($) {
 		input : false,
 		buttonName : 'btn-primary'
 	});
-	
-	
+
+
 	
 });
 
