@@ -301,11 +301,15 @@
 										<h2 align="center">{{ info.title }}</h2>
                                         <h3 align="center">{{ info.title_eng }}</h3>
 
-                                        
+
 										<ul class="nav nav-tabs">
                                             <li class="active"><a data-toggle="tab" href="#home">Русский</a></li>
-                                            <li><a data-toggle="tab" href="#menu1">Английский</a></li>
-                                            <li><a data-toggle="tab" href="#menu2">Аккорды</a></li>
+                                            {%  if info.text_eng %}
+                                                <li><a data-toggle="tab" href="#menu1">Английский</a></li>
+                                            {% endif %}
+                                            {% if info.accords %}
+                                                <li><a data-toggle="tab" href="#menu2">Аккорды</a></li>
+                                            {% endif %}
                                         </ul>
 
                                         <div class="tab-content">
@@ -322,6 +326,20 @@
                                                 <h4 align="center">{{ info.accords | safe | linebreaks }}</h4>
                                             </div>
                                         </div>
+                                    
+                                    {% if info.link_set %}
+                                        {% for link in info.link_set.all %}
+                                            <hr>
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ link.url }}" allowfullscreen></iframe>
+                                            </div>
+{#                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ link.url }}"#}
+{#                                                    frameborder="0"#}
+{#                                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"#}
+{#                                                    allowfullscreen>#}
+{#                                            </iframe>#}
+                                        {% endfor %}
+                                    {% endif %}
 									</div>
 
 {#									<div class="blog-extra">#}

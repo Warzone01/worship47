@@ -31,7 +31,7 @@ class Category(models.Model):
 
 class Link(models.Model):
     song = models.ForeignKey('Song', on_delete=models.CASCADE)
-    url = models.URLField(max_length=200, blank=True)
+    url = models.CharField(max_length=200, null="True", blank=True)
 
 
 class Song(models.Model):

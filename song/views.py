@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Song, Category
+from .models import Song, Category, Link
 from django.template import loader
 from django.db.models import Q
 
@@ -28,11 +28,9 @@ def list(request, categ_slug=''):
         else:
             song_list = Song.objects.none()
 
-
     if categ_slug:
         categ = Category.objects.get(slug=categ_slug)
         song_list = song_list.filter(category=categ)
-
 
     print(song_list)
     categs = Category.objects.all()
@@ -50,7 +48,7 @@ def song(request, song_id):
     categs = Category.objects.all()
     context = {
         'info': info,
-        'categs': categs
+        'categs': categs,
     }
     return render(request, 'worship/detail.html', context)
 
