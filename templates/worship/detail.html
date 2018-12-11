@@ -317,28 +317,33 @@
                                                 <p></p>
                                                 <h4 align="center">{{ info.text | safe | linebreaks }}</h4>
                                             </div>
-                                            <div id="menu1" class="tab-pane fade">
-                                                <p></p>
-                                                <h4 align="center">{{ info.text_eng | safe | linebreaks }}</h4>
-                                            </div>
-                                            <div id="menu2" class="tab-pane fade">
-                                                <p></p>
-                                                <h4 align="center">{{ info.accords | safe | linebreaks }}</h4>
-                                            </div>
+                                            {% if info.text_eng %}
+                                                <div id="menu1" class="tab-pane fade">
+                                                    <p></p>
+                                                    <h4 align="center">{{ info.text_eng | safe | linebreaks }}</h4>
+                                                </div>
+                                            {% endif %}
+                                            {% if info.accords %}
+                                                <div id="menu2" class="tab-pane fade">
+                                                    <p></p>
+                                                    <h4 align="center">{{ info.accords | safe | linebreaks }}</h4>
+                                                </div>
+                                            {% endif %}
                                         </div>
-                                    
+
                                     {% if info.link_set %}
                                         {% for link in info.link_set.all %}
                                             <hr>
                                             <div class="embed-responsive embed-responsive-16by9">
                                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ link.url }}" allowfullscreen></iframe>
                                             </div>
-{#                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ link.url }}"#}
-{#                                                    frameborder="0"#}
-{#                                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"#}
-{#                                                    allowfullscreen>#}
-{#                                            </iframe>#}
                                         {% endfor %}
+                                    {% endif %}
+                                    <hr>
+                                    {% if info.presentation %}
+                                        <a href="{{ info.presentation.url }}" download="{{ info.name }}">
+                                            <button type="button" class="btn btn-primary btn-sm">Скачать презентацию</button>
+                                        </a>
                                     {% endif %}
 									</div>
 
@@ -519,10 +524,9 @@
         </div>
 		<!-- end Main Wrapper -->
 		
-		
- </div> <!-- / .wrapper -->
+        </div> <!-- / .wrapper -->
 	<!-- end Container Wrapper -->
- 
+    </div>
  
 <!-- start Back To Top -->
 <div id="back-to-top">
