@@ -356,7 +356,7 @@
 
                         {% for categ in categs %}
 							<div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url(/static/images/{{ categ.image.url }});">
+								<div class="category-image-bg" style="background-image:url({{ categ.image.url }});">
 									<a href="/song/categ/{{ categ.slug }}/">
 										<span class="text">
 											{{ categ.name }}

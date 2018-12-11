@@ -5,7 +5,7 @@ from slugger import AutoSlugField
 class Category(models.Model):
     name = models.CharField('Name', max_length=20, null=True)
     slug = AutoSlugField(populate_from='name', null=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
         return self.name
