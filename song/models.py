@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from slugger import AutoSlugField
 
@@ -19,9 +20,9 @@ class Link(models.Model):
 class Song(models.Model):
     title = models.CharField(max_length=200, blank=True)
     title_eng = models.CharField(max_length=200, blank=True)
-    text = models.TextField(blank=True)
-    text_eng = models.TextField(blank=True)
-    accords = models.TextField(blank=True)
+    text = RichTextField(blank=True)
+    text_eng = RichTextField(blank=True)
+    accords = RichTextField(blank=True)
     presentation = models.FileField(upload_to='presentations/', blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'worship',
     'song',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,11 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = "/home/kirill/programming/Worship/media/"
 MEDIA_URL = "/media/"
+
+# CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}

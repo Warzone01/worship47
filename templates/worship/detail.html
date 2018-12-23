@@ -315,18 +315,18 @@
                                         <div class="tab-content">
                                             <div id="home" class="tab-pane fade in active">
                                                 <p></p>
-                                                <h4 align="center">{{ info.text | safe | linebreaks }}</h4>
+                                                <p>{{ info.text | safe}}</p>
                                             </div>
                                             {% if info.text_eng %}
                                                 <div id="menu1" class="tab-pane fade">
                                                     <p></p>
-                                                    <h4 align="center">{{ info.text_eng | safe | linebreaks }}</h4>
+                                                    <p>{{ info.text_eng | safe}}</p>
                                                 </div>
                                             {% endif %}
                                             {% if info.accords %}
                                                 <div id="menu2" class="tab-pane fade">
                                                     <p></p>
-                                                    <h4 align="center">{{ info.accords | safe | linebreaks }}</h4>
+                                                    <p>{{ info.accords | safe}}</p>
                                                 </div>
                                             {% endif %}
                                         </div>

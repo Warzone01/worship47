@@ -435,7 +435,6 @@
 .navbar-sticky .navbar-nav > .disabled > a,
 .navbar-sticky .navbar-nav > .disabled > a:hover,
 .navbar-sticky .navbar-nav > .disabled > a:focus {
-    color: #F;
     background-color: transparent
 }
 
@@ -3379,7 +3378,6 @@ ul.blog-meta li > div {
     display: block;
     min-height: 44px;
     text-transform: uppercase;
-    padding
 }
 
 .blog-pager-wrapper h4 a:hover {
@@ -3817,7 +3815,6 @@ ul.secondary-footer-menu li a:hover {
 .modal.modal-login .modal-content {
     width: 380px;
     margin: 0 auto;
-    position: relativel
 }
 
 .modal.modal-login .modal-content h4 {
@@ -4443,3 +4440,7 @@ ul.static-page-menu li.active a {
         margin-right: 0
     }
 }
+
+
+
+
