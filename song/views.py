@@ -52,3 +52,4 @@ def song(request, song_id):
     }
     return render(request, 'worship/detail.html', context)
 
+

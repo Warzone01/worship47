@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+ACCOUNT_ACTIVATION_DAYS = 14
 
 # Application definition
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'worship',
     'song',
     'ckeditor',
+    'django_registration',
 ]
 
 MIDDLEWARE = [
