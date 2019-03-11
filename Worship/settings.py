@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'worship',
     'song',
+    'account',
     'ckeditor',
     'django_registration',
 ]
