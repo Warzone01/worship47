@@ -35,6 +35,7 @@ OWN_APPS = [
 ]
 
 THIRD_PART = [
+    'cuser',
     'ckeditor',
     'django_registration',
 ]
@@ -128,3 +129,4 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = "/home/kirill/programming/w47/media/"
 MEDIA_URL = "/media/"
 
+AUTH_USER_MODEL = 'account.User'
