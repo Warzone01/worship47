@@ -19,8 +19,8 @@ def list(request, categ_slug=''):
                 song_list = song_list.filter(category_id=categ)
             song_list = song_list.filter(
                 Q(title__icontains=search) |
-                Q(title_eng__icontains=search)|
-                Q(text_eng__icontains=search)|
+                Q(title_eng__icontains=search) |
+                Q(text_eng__icontains=search) |
                 Q(text__icontains=search)
             )
 

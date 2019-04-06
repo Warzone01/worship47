@@ -8,6 +8,7 @@ class LinkInLine(admin.StackedInline):
     model = Link
     extra = 1
 
+
 @register(Song)
 class SongAdmin(admin.ModelAdmin):
     inlines = [LinkInLine]

@@ -2,7 +2,6 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from song.models import Song, Category
 from django.template import loader
-from .models import Registration
 from django.db.models import Q
 
 
@@ -17,6 +16,7 @@ def index(request):
     }
 
     return HttpResponse(template.render(context, request))
+
 
 def Registration(request):
 
