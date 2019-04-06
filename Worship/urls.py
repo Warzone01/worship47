@@ -23,6 +23,7 @@ from django.conf.urls import url
 urlpatterns = [
     path('', include('worship.urls')),
     path('song/', include('song.urls')),
+    path('account/', include('account.urls')),
     path('admin/', admin.site.urls),
     url(r'^accounts/', include('django_registration.backends.activation.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
