@@ -10,7 +10,6 @@ from django.db.models import Q
 @csrf_exempt
 def list(request, categ_slug=''):
     song_list = Song.objects.all().order_by('-category', 'title')
-    print(song_list)
     if request.method == 'POST':
         search = request.POST.get('search', '')
         categ = request.POST.get('categ', '')
@@ -51,5 +50,4 @@ def song(request, song_id):
         'categs': categs,
     }
     return render(request, 'worship/detail.html', context)
-
 
