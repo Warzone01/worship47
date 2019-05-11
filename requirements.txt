@@ -1,8 +1,5 @@
-Django==2.1.7
-django-ckeditor==5.6.1
-django-js-asset==1.2.1
-pytz==2018.9
-django-registration==3.0
-django-slugger==1.1.2
-Pillow==6.0.0
-django-username-email==2.2.3
+Django
+django-ckeditor
+django-slugger
+Pillow
+django-allauth
