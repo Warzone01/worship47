@@ -295,7 +295,12 @@
                                     <ul class="blog-meta clearfix">
                                         <li><div>Категория <a href="/song/categ/{{ info.category.slug }}">{{ info.category.name }}</a></div></li>
                                     </ul>
-											
+
+                                    {% if info.presentation %}
+                                        <a href="{{ info.presentation.url }}" download="{{ info.name }}">
+                                            <button type="button" class="btn btn-primary btn-sm">Скачать презентацию</button>
+                                        </a>
+                                    {% endif %}
 									<div class="blog-content">
 
 										<h2 align="center">{{ info.title }}</h2>
@@ -340,11 +345,7 @@
                                         {% endfor %}
                                     {% endif %}
                                     <hr>
-                                    {% if info.presentation %}
-                                        <a href="{{ info.presentation.url }}" download="{{ info.name }}">
-                                            <button type="button" class="btn btn-primary btn-sm">Скачать презентацию</button>
-                                        </a>
-                                    {% endif %}
+
 									</div>
 
 {#									<div class="blog-extra">#}
