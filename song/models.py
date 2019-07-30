@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.db import models
-from slugger import AutoSlugField
+from autoslug import AutoSlugField
 
 
 class Category(models.Model):
