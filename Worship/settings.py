@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'song',
     'account',
     'ckeditor',
-    'django_registration',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +139,5 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
     },
 }
+
+AUTH_USER_MODEL = 'users.CustomUser'
