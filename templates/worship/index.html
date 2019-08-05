@@ -75,7 +75,7 @@
 							<h4>Войти</h4>
 							
 							<div class="form-group"> 
-								<input id="login_username" class="form-control" placeholder="Логин" type="text">
+								<input id="login_username" class="form-control" placeholder="Логин" type="{{ users.email }}">
 							</div>
 							<div class="form-group"> 
 								<input id="login_password" class="form-control" placeholder="Пароль" type="password">
@@ -237,19 +237,34 @@
 						</ul>
 					
 					</div><!--/.nav-collapse -->
-				
-					<div class="pull-right">
-						<div class="navbar-mini">
-							<ul class="clearfix">
 
-								<li class="user-action">
-									<a data-toggle="modal" href="#loginModal" class="btn">Вход/регистрация</a>
-								</li>
-							</ul>
-						</div>
-						
-					</div>
-				
+                    {% if not users.email %}
+
+                        <div class="pull-right">
+                            <div class="navbar-mini">
+                                <ul class="clearfix">
+
+                                    <li class="user-action">
+                                        <a data-toggle="modal" href="#loginModal" class="btn">Вход/регистрация</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+                    {% if users.email %}
+
+                        <div class="pull-right">
+                            <div class="navbar-mini">
+                                <ul class="clearfix">
+                                    <p>Привет, {{ users.username }}</p>
+                                </ul>
+                            </div>
+                        </div>
+
+                    {% endif %}
 				</div>
 				
 				<div id="slicknav-mobile"></div>
