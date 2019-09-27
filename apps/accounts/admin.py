@@ -2,7 +2,13 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 from .forms import CustomUserCreationForm
-from .models import User
+from .models import User, Profile
+
+
+class ProfileInline(admin.TabularInline):
+    model = Profile
+    extra = 0
+    show_change_link = True
 
 
 @admin.register(User)
@@ -28,4 +34,4 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
     ordering = ('email',)
-
+    inlines = [ProfileInline]
