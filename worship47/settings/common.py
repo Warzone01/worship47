@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+PRE_APPS = [
+]
+
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,7 +52,7 @@ LOCAL_APPS = [
     # Your stuff: custom apps go here
 ]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = PRE_APPS + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
