@@ -12,6 +12,11 @@ class LinkInLine(admin.StackedInline):
 class SongAdmin(admin.ModelAdmin):
     inlines = [LinkInLine]
 
-# admin.site.register(Song)
+
+@register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['slug', 'name']
+    list_display_links = ['slug']
+
+
 admin.site.register(Link)
-admin.site.register(Category)
