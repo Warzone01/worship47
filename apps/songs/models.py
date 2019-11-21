@@ -35,6 +35,9 @@ class Song(TimeStampedModel):
     presentation = models.FileField(upload_to='presentations/', blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
 
+    class Meta:
+        ordering = ['id']
+
     def __str__(self):
         if self.title_eng:
             return f"{self.title} | {self.title_eng}"
