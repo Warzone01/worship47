@@ -14,7 +14,7 @@ class Category(models.Model):
         return translit.slugify(value)
 
     def __str__(self):
-        return self.slug
+        return self.name
 
 
 class Link(models.Model):

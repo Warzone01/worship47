@@ -5,7 +5,10 @@
 {% block content %}
   <ul>
   {% for song in songs %}
-    <li><i>{{ song.category.name }}</i>: <a href="{% url 'song-detail' song.id %}">{{ song.title }} || {{ song.title_eng }}</a></li>
+    <li>
+      <i>{{ song.category.name }}</i>: <a href="{% url 'song-detail' song.id %}">{{ song.title }} || {{ song.title_eng }}</a>
+      <a href="{% url 'song-update' song.id %}"><b>edit</b></a>
+    </li>
 
   {% endfor %}
   </ul>
