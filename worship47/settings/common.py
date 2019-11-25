@@ -45,6 +45,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'ckeditor',
+    'tagulous',
 ]
 
 LOCAL_APPS = [
@@ -212,6 +213,18 @@ ADMIN_URL = "admin/"
 ADMINS = [("Guest007", "trash4@yandex.ru")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
+
+
+# TAG SUPPORT
+# ------------------------------------------------------------------------------
+# https://github.com/radiac/django-tagulous
+#
+SERIALIZATION_MODULES = {
+    'xml':    'tagulous.serializers.xml_serializer',
+    'json':   'tagulous.serializers.json',
+    'python': 'tagulous.serializers.python',
+    'yaml':   'tagulous.serializers.pyyaml',
+}
 
 
 # LOGGING
