@@ -22,9 +22,18 @@ class Song(TimeStampedModel):
     accords = RichTextField(blank=True)
     presentation = models.FileField(upload_to='presentations/', blank=True)
     category = TagField(
-        force_lowercase=True,
+        force_lowercase=False,
         max_count=4,
-        initial=['Общие', 'Рождественские', 'Пасхальные', 'Детские']
+        initial=['Общие', 'Рождественские', 'Пасхальные', 'Детские'],
+        blank=True,
+    )
+    author = models.CharField(max_length=100, blank=True, default='')
+    is_translated = models.BooleanField(blank=True, default=True)
+    translator = TagField(
+        force_lowercase=False,
+        max_count=4,
+        initial=['Фурманов', 'Зуев', 'Иваник', 'Куга'],
+        blank=True,
     )
 
     class Meta:

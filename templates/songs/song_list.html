@@ -6,8 +6,14 @@
   <ul>
   {% for song in songs %}
     <li>
-      <i>{{ song.category.name }}</i>: <a href="{% url 'song-detail' song.id %}">{{ song.title }} || {{ song.title_eng }}</a>
-      <a href="{% url 'song-update' song.id %}"><b>edit</b></a>
+      <a href="{% url 'song-detail' song.id %}">{{ song.title }} || {{ song.title_eng }}</a>
+      -> <a href="{% url 'song-update' song.id %}"><b>edit</b></a>
+    {% if song.category.all %}Categ: <i>
+      {% for categ in song.category.all %}
+        {{ categ.name }}{% if song.category.all|length > forloop.counter %};{% endif %}
+      {% endfor %}
+      </i>
+    {% endif %}
     </li>
 
   {% endfor %}
