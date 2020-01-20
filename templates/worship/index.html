@@ -385,54 +385,26 @@
 						<div class="row gap-0 mb-50">
 							<div class="col-md-8 col-md-offset-2">
 						
-								<p class="text-center">Вы можете выбрать нужную Вам категорию песен! Это сделает поиск песен проще и понятней</p>
+								<p class="text-center">Вы можете выбрать нужную Вам категорию песен. Это сделает поиск песен проще и понятнее.</p>
 							
 							</div>
 						</div>
 						
 						<div class="row gap-20 mb-70">
 
+{% for categ in categs %}
 
 							<div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url(../../static/images/church.jpg);">
-									<a href="/song/categ/{{ categ.slug }}/">
+								<div class="category-image-bg" style="background-image:url({% static 'images/' %}{{ categ.image }});">
+									<a href="/songs/list/?categ={{ categ.slug }}">
 										<span class="text">
-											Основные
+											{{ categ.name }}
 										</span>
 									</a>
 								</div>
 							</div>
 
-							<div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url(../../static/images/christmas.jpg);">
-									<a href="/song/categ/{{ categ.slug }}/">
-										<span class="text">
-											Рождественские
-										</span>
-									</a>
-								</div>
-							</div>
-
-							<div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url(../../static/images/kids.jpg);">
-									<a href="/song/categ/{{ categ.slug }}/">
-										<span class="text">
-											Детские
-										</span>
-									</a>
-								</div>
-							</div>
-
-							<div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url(../../static/images/easter.jpeg);">
-									<a href="/song/categ/{{ categ.slug }}/">
-										<span class="text">
-											Пасхальные
-										</span>
-									</a>
-								</div>
-							</div>
-
+{% endfor %}
 
 						</div>
 						</div>

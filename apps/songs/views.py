@@ -3,10 +3,45 @@ from django.contrib.auth.mixins import LoginRequiredMixin, \
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, UpdateView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, \
+    TemplateView
 
 from songs.forms import SongForm
 from songs.models import Song
+
+
+class Index(TemplateView):
+    template_name = 'worship/index.html'
+
+    def get_context_data(self, **kwargs):
+        # Fixme: Hardcoded categs. Very bad.
+        categs = [
+            {
+                'slug': 'obshchie',
+                'name': 'Основные',
+                'image': 'church.jpg',
+            },
+            {
+                'slug': 'rozhdestvenskie',
+                'name': 'Рождественские',
+                'image': 'christmas.jpg',
+            },
+            {
+                'slug': 'detskie',
+                'name': 'Детские',
+                'image': 'kids.jpg',
+            },
+            {
+                'slug': 'paskhalnye',
+                'name': 'Пасхальные',
+                'image': 'easter.jpeg',
+            },
+        ]
+        # Song.category.tag_model.objects.all()
+        self.extra_context = {'categs': categs}
+
+        kwargs = super(Index, self).get_context_data(**kwargs)
+        return kwargs
 
 
 class SongList(ListView):

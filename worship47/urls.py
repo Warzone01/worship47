@@ -19,9 +19,11 @@ from django.urls import path, include
 # from accounts.views import index
 from django.views.generic import TemplateView
 
+from songs.views import Index
+
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='worship/index.html'), name='home'),
-#    path('', index, name='home'),
+    # path('', TemplateView.as_view(template_name='worship/index.html'), name='home'),
+    path('', Index.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('songs/', include('songs.urls')),
     path('accounts/', include('accounts.urls')),
