@@ -5,8 +5,9 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 
-from songs.forms import SongForm
-from songs.models import Song
+from .forms import SongForm
+from .models import Song
+from .models import Link
 
 
 class SongList(ListView):
@@ -24,8 +25,6 @@ class SongList(ListView):
             return qs.filter(category__slug__in=[categ])
         else:
             return qs
-
-
 
 
 class SongDetail(LoginRequiredMixin, DetailView):

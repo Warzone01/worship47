@@ -15,23 +15,6 @@ class Link(models.Model):
         return "Link for {self.song.title}"
 
 
-# class Category(models.Model):
-#     name = models.CharField('Name', max_length=20, null=True)
-#     slug = AutoSlugField(populate_from='name', null=True)
-#     image = models.ImageField(upload_to='images/', null=True, blank=True)
-#
-#     def __str__(self):
-#         return self.name
-
-
-# class Link(models.Model):
-    # url = models.CharField(max_length=200, null="True", blank=True)
-
-class Media(models.Model):
-    song = models.ForeignKey('Song', on_delete=models.CASCADE)
-    url = models.CharField(max_length=200, null="True", blank=True)
-
-
 class Song(TimeStampedModel):
     title = models.CharField(max_length=255, blank=True)
     title_eng = models.CharField(max_length=255, blank=True)
@@ -56,9 +39,6 @@ class Song(TimeStampedModel):
         initial=['Фурманов', 'Зуев', 'Иваник', 'Куга', 'Жданов', 'Герсимович'],
         blank=True,
     )
-
-    
-
 
     class Meta:
         ordering = ['id']

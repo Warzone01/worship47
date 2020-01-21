@@ -1,5 +1,5 @@
 from django.urls import path, include
-from songs.views import SongList, SongDetail, SongUpdate, SongCreate
+from .views import SongList, SongDetail, SongUpdate, SongCreate
 
 urlpatterns = [
     path('list/', SongList.as_view(), name='songs-list-first'),

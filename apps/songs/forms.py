@@ -1,5 +1,6 @@
 from django import forms
-from songs.models import Song
+from .models import Song
+from .models import Link
 
 
 class SongForm(forms.ModelForm):

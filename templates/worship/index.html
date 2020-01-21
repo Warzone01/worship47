@@ -245,11 +245,11 @@
                                 <ul class="clearfix">
 									{% if user.first_name or user.last_name %}
 										<li class="user-action">
-											<a href="#">Hi {{ user.first_name }} {{ user.last_name }}!</a>
+											<a href="/songs/song/">Hi {{ user.first_name }} {{ user.last_name }}!</a>
 										</li>
 									{% else %}
 										<li class="user-action">
-											<a href="#">Hi {{ user.email }}!</a>
+											<a href="/songs/song/">Hi {{ user.email }}!</a>
 										</li>
 					    			{% endif %}
 									<li class="user-action">

@@ -3,9 +3,14 @@
 import os
 import sys
 
+<<<<<<< HEAD
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'worship47.settings')
+=======
+if __name__ == "__main__":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "w47.settings")
+>>>>>>> Guest007-development
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
