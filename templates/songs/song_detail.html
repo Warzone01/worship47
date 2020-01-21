@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Song's detail{% endblock %}
+
+{% block content %}
+  <a href="{% url 'songs-list-first' %}">Song's list</a>
+    <h2>{{ object.title }} {% if object.title_eng %}|| {{ object.title_eng }}{% endif %}</h2>
+    <p>Category: <i>
+  {% for categ in object.category.all %}
+    {{ categ.name }}{% if object.category.all|length > forloop.counter %};{% endif %}
+  {% endfor %}
+    </i></p>
+    <p>{{ object.text|safe }}</p>
+    <p><b>eng:</b></p>
+    <p>{{ object.text_eng|safe }}</p>
+
+
+{% endblock %}

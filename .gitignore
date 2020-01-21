@@ -86,7 +86,7 @@ celerybeat-schedule
 # Environments
 .env
 .venv
-env/
+#env/
 venv/
 ENV/
 env.bak/
@@ -111,3 +111,6 @@ venv.bak/
 
 # User-specific stuff
 .idea/
+
+media/
+!/env/dot.env.template

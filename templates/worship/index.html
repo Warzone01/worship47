@@ -230,7 +230,7 @@
 								<a href="">Домой</a>
 							</li>
 							<li>
-								<a href="/song">Список песен</a>
+								<a href="/songs/list">Список песен</a>
 
 							</li>
 							<li><a href="contact.html">Обратная связь</a></li>
@@ -238,7 +238,37 @@
 					
 					</div><!--/.nav-collapse -->
 
-                    {% if not users.email %}
+					{% block content %}
+					{% if user.is_authenticated %}
+						<div class="pull-right">
+                            <div class="navbar-mini">
+                                <ul class="clearfix">
+									{% if user.first_name or user.last_name %}
+										<li class="user-action">
+											<a href="#">Hi {{ user.first_name }} {{ user.last_name }}!</a>
+										</li>
+									{% else %}
+										<li class="user-action">
+											<a href="#">Hi {{ user.email }}!</a>
+										</li>
+					    			{% endif %}
+									<li class="user-action">
+										<a href="{% url 'logout' %}" data-toggle="modal" class="btn">Выйти</a>
+									</li>
+                                </ul>
+                            </div>
+
+                        </div>
+<!--					    {% if user.first_name or user.last_name %}-->
+<!--						Hi {{ user.first_name }} {{ user.last_name }}!-->
+<!--					    {% else %}-->
+<!--						  Hi {{ user.email }}!-->
+<!--					    {% endif %}-->
+
+<!--						<p><a href="{% url 'logout' %}">logout</a></p>-->
+<!--						<p><a href="{% url 'password_reset' %}">reset password</a></p>-->
+
+						{% else %}
 
                         <div class="pull-right">
                             <div class="navbar-mini">
@@ -252,19 +282,8 @@
 
                         </div>
 
-                    {% endif %}
-
-                    {% if users.email %}
-
-                        <div class="pull-right">
-                            <div class="navbar-mini">
-                                <ul class="clearfix">
-                                    <p>Привет, {{ users.first_name }}</p>
-                                </ul>
-                            </div>
-                        </div>
-
-                    {% endif %}
+						{% endif %}
+					{% endblock %}
 				</div>
 				
 				<div id="slicknav-mobile"></div>
@@ -279,7 +298,7 @@
 		<div class="main-wrapper">
 		
 			<!-- start hero-header -->
-			<div class="hero" style="background-image:url('{%  static 'images/hero-header/01.jpg' %}');">
+			<div class="hero" style="background-image:url(../../static/images/hero-header/01.jpg);">
 				<div class="container">
 					<div class="row gap-0">
 					
@@ -307,9 +326,13 @@
                                                     </button>
 
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="mainSearchDropdown">
-                                                        {% for categ in categs %}
-                                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" data-value="{{ categ.id }}">{{ categ.name }}</a></li>
-                                                        {% endfor %}
+
+														<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" data-value="{{ categ.id }}">Все</a></li>
+														<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" data-value="{{ categ.id }}">Основные</a></li>
+														<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" data-value="{{ categ.id }}">Рождественские</a></li>
+														<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" data-value="{{ categ.id }}">Пасхальные</a></li>
+														<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" data-value="{{ categ.id }}">Детские</a></li>
+
                                                     </ul>
 
 {#                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="mainSearchDropdown">#}
@@ -369,17 +392,47 @@
 						
 						<div class="row gap-20 mb-70">
 
-                        {% for categ in categs %}
+
 							<div class="col-xss-12 col-xs-6 col-sm-6">
-								<div class="category-image-bg" style="background-image:url({{ categ.image.url }});">
+								<div class="category-image-bg" style="background-image:url(../../static/images/church.jpg);">
 									<a href="/song/categ/{{ categ.slug }}/">
 										<span class="text">
-											{{ categ.name }}
+											Основные
 										</span>
 									</a>
 								</div>
 							</div>
-                        {% endfor %}
+
+							<div class="col-xss-12 col-xs-6 col-sm-6">
+								<div class="category-image-bg" style="background-image:url(../../static/images/christmas.jpg);">
+									<a href="/song/categ/{{ categ.slug }}/">
+										<span class="text">
+											Рождественские
+										</span>
+									</a>
+								</div>
+							</div>
+
+							<div class="col-xss-12 col-xs-6 col-sm-6">
+								<div class="category-image-bg" style="background-image:url(../../static/images/kids.jpg);">
+									<a href="/song/categ/{{ categ.slug }}/">
+										<span class="text">
+											Детские
+										</span>
+									</a>
+								</div>
+							</div>
+
+							<div class="col-xss-12 col-xs-6 col-sm-6">
+								<div class="category-image-bg" style="background-image:url(../../static/images/easter.jpeg);">
+									<a href="/song/categ/{{ categ.slug }}/">
+										<span class="text">
+											Пасхальные
+										</span>
+									</a>
+								</div>
+							</div>
+
 
 						</div>
 						</div>
