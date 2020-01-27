@@ -233,7 +233,7 @@
 								<a href="/songs/list">Список песен</a>
 
 							</li>
-							<li><a href="contact.html">Обратная связь</a></li>
+							<li><a href="../songs/contact.html">Обратная связь</a></li>
 						</ul>
 					
 					</div><!--/.nav-collapse -->
@@ -245,11 +245,11 @@
                                 <ul class="clearfix">
 									{% if user.first_name or user.last_name %}
 										<li class="user-action">
-											<a href="#">Hi {{ user.first_name }} {{ user.last_name }}!</a>
+											<a href="/songs/song/">Hi {{ user.first_name }} {{ user.last_name }}!</a>
 										</li>
 									{% else %}
 										<li class="user-action">
-											<a href="#">Hi {{ user.email }}!</a>
+											<a href="/songs/song/">Hi {{ user.email }}!</a>
 										</li>
 					    			{% endif %}
 									<li class="user-action">
@@ -259,14 +259,6 @@
                             </div>
 
                         </div>
-<!--					    {% if user.first_name or user.last_name %}-->
-<!--						Hi {{ user.first_name }} {{ user.last_name }}!-->
-<!--					    {% else %}-->
-<!--						  Hi {{ user.email }}!-->
-<!--					    {% endif %}-->
-
-<!--						<p><a href="{% url 'logout' %}">logout</a></p>-->
-<!--						<p><a href="{% url 'password_reset' %}">reset password</a></p>-->
 
 						{% else %}
 

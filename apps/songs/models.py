@@ -15,18 +15,6 @@ class Link(models.Model):
         return "Link for {self.song.title}"
 
 
-# class Category(models.Model):
-#     name = models.CharField('Name', max_length=20, null=True)
-#     slug = AutoSlugField(populate_from='name', null=True)
-#     image = models.ImageField(upload_to='images/', null=True, blank=True)
-#
-#     def __str__(self):
-#         return self.name
-
-
-# class Link(models.Model):
-    # url = models.CharField(max_length=200, null="True", blank=True)
-
 class Media(models.Model):
     song = models.ForeignKey('Song', on_delete=models.CASCADE)
     url = models.CharField(max_length=200, null="True", blank=True)
@@ -40,6 +28,7 @@ class Song(TimeStampedModel):
     accords = RichTextField(blank=True)
     presentation = models.FileField(upload_to='presentations/', blank=True)
     accords_dwnl = models.FileField(upload_to='accords/', blank=True)
+    accords_dwnl2 = models.FileField(upload_to='accords/', blank=True)
     text_dwnl = models.FileField(upload_to="text/", blank=True)
     category = TagField(
         force_lowercase=False,
@@ -53,12 +42,22 @@ class Song(TimeStampedModel):
     translator = TagField(
         force_lowercase=False,
         max_count=6,
-        initial=['Фурманов', 'Зуев', 'Иваник', 'Куга', 'Жданов', 'Герсимович'],
+        initial=['Фурманов', 'Зуев', 'Иваник', 'Куга', 'Жданов', 'Герасимович'],
+        blank=True,
+    )
+    key = TagField(
+        force_lowercase=False,
+        max_count=3,
+        initial=["C", "D", "E", "F", "G", "A", "D"],
         blank=True,
     )
 
-    
-
+    difficult = TagField(
+        force_lowercase=False,
+        max_count=1,
+        initial=["Простой", "Средний", "Сложный"],
+        blank=True,
+    )
 
     class Meta:
         ordering = ['id']
