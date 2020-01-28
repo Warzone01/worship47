@@ -1,16 +1,16 @@
 from django.contrib import admin
 from django.contrib.admin import register
-from .models import Song, Link
+from .models import Song, Media
 
 
 class LinkInLine(admin.StackedInline):
-    model = Link
+    model = Media
     extra = 1
 
 
 @register(Song)
 class SongAdmin(admin.ModelAdmin):
-    list_display = ['title', 'title_eng', 'categ']
+    list_display = ['title', 'title_eng', 'categ',]
     inlines = [LinkInLine]
 
     def categ(self, obj):
@@ -19,4 +19,5 @@ class SongAdmin(admin.ModelAdmin):
             categs.append(f"{c.name} ({c.slug})")
         return ' || '.join(categs)
 
-admin.site.register(Link)
+
+admin.site.register(Media)

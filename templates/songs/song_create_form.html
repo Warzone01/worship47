@@ -343,7 +343,8 @@
 								</div>
 								
 								{% block content %}
-									<form method="post">{% csrf_token %}
+									<form method="post">
+										{% csrf_token %}
 										{{ form.media }}
 										{{ form.as_p }}
 										<input class="btn btn-success btn-sm" type="submit" value="Сохранить">

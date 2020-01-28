@@ -6,13 +6,13 @@ from tagulous.models import TagField
 from autoslug import AutoSlugField
 
 
-class Link(models.Model):
-    song = models.ForeignKey('Song', on_delete=models.CASCADE)
-    url = models.CharField(max_length=200, null=True, blank=True)
-    description = models.TextField(blank=True, default='')
-
-    def __str__(self):
-        return "Link for {self.song.title}"
+# class Link(models.Model):
+#     song = models.ForeignKey('Song', on_delete=models.CASCADE)
+#     url = models.CharField(max_length=200, null=True, blank=True)
+#     description = models.TextField(blank=True, default='')
+#
+#     def __str__(self):
+#         return "Link for {self.song.title}"
 
 
 class Media(models.Model):

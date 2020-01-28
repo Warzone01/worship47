@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 
-from songs.forms import SongForm
-from songs.models import Song
+from .forms import SongForm
+from .models import Song, Media
 
 
 class SongList(ListView):
@@ -24,8 +24,6 @@ class SongList(ListView):
             return qs.filter(category__slug__in=[categ])
         else:
             return qs
-
-
 
 
 class SongDetail(LoginRequiredMixin, DetailView):
@@ -47,6 +45,7 @@ class SongUpdate(PermissionRequiredMixin, UpdateView):
 class SongCreate(PermissionRequiredMixin, CreateView):
     form_class = SongForm
     model = Song
+    model2 = Media
     template_name_suffix = '_create_form'
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
