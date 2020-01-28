@@ -1,5 +1,5 @@
 from django import forms
-from songs.models import Song
+from .models import Song, Media
 
 
 class SongForm(forms.ModelForm):

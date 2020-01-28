@@ -29,6 +29,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
 ]
 
+
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [

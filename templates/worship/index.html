@@ -75,12 +75,12 @@
 							<h4>Войти</h4>
 							
 							<div class="form-group"> 
-								<input id="login_username" class="form-control" placeholder="Логин" type="{{ users.email }}">
+								<input id="login_username" class="form-control" placeholder="Логин" type="text">
 							</div>
 							<div class="form-group"> 
 								<input id="login_password" class="form-control" placeholder="Пароль" type="password">
 							</div>
-			
+
 							<div class="form-group mt-10 mb-10">
 								<div class="row gap-5">
 									<div class="col-xs-6 col-sm-6 col-md-6">
@@ -233,7 +233,7 @@
 								<a href="/songs/list">Список песен</a>
 
 							</li>
-							<li><a href="contact.html">Обратная связь</a></li>
+							<li><a href="../songs/contact.html">Обратная связь</a></li>
 						</ul>
 					
 					</div><!--/.nav-collapse -->
@@ -245,11 +245,11 @@
                                 <ul class="clearfix">
 									{% if user.first_name or user.last_name %}
 										<li class="user-action">
-											<a href="#">Hi {{ user.first_name }} {{ user.last_name }}!</a>
+											<a href="">Привет, {{ user.first_name }}!</a>
 										</li>
 									{% else %}
 										<li class="user-action">
-											<a href="#">Hi {{ user.email }}!</a>
+											<a href="">Привет, {{ user.email }}!</a>
 										</li>
 					    			{% endif %}
 									<li class="user-action">
@@ -259,14 +259,6 @@
                             </div>
 
                         </div>
-<!--					    {% if user.first_name or user.last_name %}-->
-<!--						Hi {{ user.first_name }} {{ user.last_name }}!-->
-<!--					    {% else %}-->
-<!--						  Hi {{ user.email }}!-->
-<!--					    {% endif %}-->
-
-<!--						<p><a href="{% url 'logout' %}">logout</a></p>-->
-<!--						<p><a href="{% url 'password_reset' %}">reset password</a></p>-->
 
 						{% else %}
 
@@ -275,7 +267,7 @@
                                 <ul class="clearfix">
 
                                     <li class="user-action">
-                                        <a data-toggle="modal" href="#loginModal" class="btn">Вход/регистрация</a>
+                                        <a data-toggle="modal" href="/accounts/login/" class="btn">Вход/регистрация</a>
                                     </li>
                                 </ul>
                             </div>
@@ -298,7 +290,7 @@
 		<div class="main-wrapper">
 		
 			<!-- start hero-header -->
-			<div class="hero" style="background-image:url(../../static/images/hero-header/01.jpg);">
+			<div class="hero" style="background-image:url('{%  static 'images/hero-header/01.jpg' %}');">
 				<div class="container">
 					<div class="row gap-0">
 					
@@ -385,7 +377,7 @@
 						<div class="row gap-0 mb-50">
 							<div class="col-md-8 col-md-offset-2">
 						
-								<p class="text-center">Вы можете выбрать нужную Вам категорию песен. Это сделает поиск песен проще и понятнее.</p>
+								<p class="text-center">Вы можете выбрать нужную Вам категорию песен! Это сделает поиск песен проще и понятней</p>
 							
 							</div>
 						</div>

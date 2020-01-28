@@ -33,8 +33,21 @@ class Song(TimeStampedModel):
     is_translated = models.BooleanField(blank=True, default=True)
     translator = TagField(
         force_lowercase=False,
-        max_count=0,
-        initial=['Фурманов', 'Зуев', 'Иваник', 'Куга', 'Жданов', 'Герсимович'],
+        max_count=6,
+        initial=['Фурманов', 'Зуев', 'Иваник', 'Куга', 'Жданов', 'Герасимович'],
+        blank=True,
+    )
+    key = TagField(
+        force_lowercase=False,
+        max_count=3,
+        initial=["C", "D", "E", "F", "G", "A", "D"],
+        blank=True,
+    )
+
+    difficult = TagField(
+        force_lowercase=False,
+        max_count=1,
+        initial=["Простой", "Средний", "Сложный"],
         blank=True,
     )
 
