@@ -73,14 +73,14 @@
 						<div class="modal-body pb-5">
 					
 							<h4>Войти</h4>
-							
-							<div class="form-group"> 
+
+							<div class="form-group">
 								<input id="login_username" class="form-control" placeholder="Логин" type="{{ users.email }}">
 							</div>
-							<div class="form-group"> 
-								<input id="login_password" class="form-control" placeholder="Пароль" type="password">
+							<div class="form-group">
+								<input id="login_password" class="form-control" placeholder="Пароль" type="{{ users.pasword}}">
 							</div>
-			
+
 							<div class="form-group mt-10 mb-10">
 								<div class="row gap-5">
 									<div class="col-xs-6 col-sm-6 col-md-6">
@@ -245,11 +245,11 @@
                                 <ul class="clearfix">
 									{% if user.first_name or user.last_name %}
 										<li class="user-action">
-											<a href="/songs/song/">Hi {{ user.first_name }} {{ user.last_name }}!</a>
+											<a href="">Привет, {{ user.first_name }}!</a>
 										</li>
 									{% else %}
 										<li class="user-action">
-											<a href="/songs/song/">Hi {{ user.email }}!</a>
+											<a href="">Привет, {{ user.email }}!</a>
 										</li>
 					    			{% endif %}
 									<li class="user-action">
@@ -267,7 +267,7 @@
                                 <ul class="clearfix">
 
                                     <li class="user-action">
-                                        <a data-toggle="modal" href="#loginModal" class="btn">Вход/регистрация</a>
+                                        <a data-toggle="modal" href="/accounts/login/" class="btn">Вход/регистрация</a>
                                     </li>
                                 </ul>
                             </div>
