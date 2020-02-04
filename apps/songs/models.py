@@ -3,15 +3,64 @@ from ckeditor.fields import RichTextField
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
 from tagulous.models import TagField
+from versatileimagefield.fields import VersatileImageField
+
+CHORDS = (
+    ("C","C"),
+    ("C#","C#"),
+    ("D","D"),
+    ("D#","D#"),
+    ("E","E"),
+    ("F","F"),
+    ("F#","F#"),
+    ("G","G"),
+    ("G#","G#"),
+    ("A","A"),
+    ("A#","A#"),
+    ("B","B"),
+)
+
+DIFFICULT = (
+    ("easy", "Easy"),
+    ("medium", "Medium"),
+    ("hard", "Hard"),
+)
 
 
-class Link(models.Model):
-    song = models.ForeignKey('Song', on_delete=models.CASCADE)
-    url = models.CharField(max_length=200, null=True, blank=True)
+class Category(models.Model):
+    title = models.CharField(max_length=50, default='')
+    slug = models.CharField(max_length=10, default='')
+    image = VersatileImageField(upload_to='categs/')
+    priority = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.title
+
+
+class Link(TimeStampedModel):
+    song = models.ForeignKey('Song', on_delete=models.CASCADE,
+                             related_name='ext_links')
+    url = models.CharField(max_length=256, null=True, blank=True)
+    ytb_id = models.CharField(max_length=20, blank=True, null=True,
+                              help_text="Youtube ID for video embedding")
     description = models.TextField(blank=True, default='')
 
     def __str__(self):
         return f"Link for {self.song.title}"
+
+
+class Chord(TimeStampedModel):
+    song = models.ForeignKey('Song', on_delete=models.CASCADE,
+                             related_name='chord_files')
+    chords = models.FileField(upload_to='chords/', blank=True)
+    key = models.CharField(max_length=2, choices=CHORDS,
+                           default="E", blank=True)
+
+    def __str__(self):
+        return f'"{self.key}" chords for {self.song.title}'
 
 
 class Song(TimeStampedModel):
@@ -19,37 +68,21 @@ class Song(TimeStampedModel):
     title_eng = models.CharField(max_length=255, blank=True)
     text = RichTextField(blank=True)
     text_eng = RichTextField(blank=True)
-    accords = RichTextField(blank=True)
+    chords = RichTextField(blank=True)
     presentation = models.FileField(upload_to='presentations/', blank=True)
-    accords_dwnl = models.FileField(upload_to='accords/', blank=True)
-    text_dwnl = models.FileField(upload_to="text/", blank=True)
-    category = TagField(
-        force_lowercase=False,
-        max_count=4,
-        initial=['Общие', 'Рождественские', 'Пасхальные', 'Детские'],
-        blank=True,
-    )
+    text_file = models.FileField(upload_to="text/", blank=True)
+    category = models.ManyToManyField(Category, blank=True)
     author = models.CharField(max_length=100, blank=True, default='')
     is_translated = models.BooleanField(blank=True, default=True)
     translator = TagField(
-        force_lowercase=False,
         max_count=6,
         initial=['Фурманов', 'Зуев', 'Иваник', 'Куга', 'Жданов', 'Герасимович'],
         blank=True,
     )
-    key = TagField(
-        force_lowercase=False,
-        max_count=3,
-        initial=["C", "D", "E", "F", "G", "A", "D"],
-        blank=True,
-    )
-
-    difficult = TagField(
-        force_lowercase=False,
-        max_count=1,
-        initial=["Простой", "Средний", "Сложный"],
-        blank=True,
-    )
+    main_key = models.CharField(max_length=2, choices=CHORDS,
+                                default="E", blank=True)
+    difficult = models.CharField(max_length=6, choices=DIFFICULT,
+                                 default="easy", blank=True)
 
     class Meta:
         ordering = ['id']

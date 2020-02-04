@@ -17,7 +17,7 @@ class Index(TemplateView):
         # Fixme: Hardcoded categs. Very bad.
         categs = [
             {
-                'slug': 'obshchie',
+                'slug': 'osnovnye',
                 'name': 'Основные',
                 'image': 'church.jpg',
             },
