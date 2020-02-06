@@ -34,7 +34,8 @@
 	<link rel="stylesheet" href="{%  static 'icons/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}">
 	<link rel="stylesheet" href="{%  static 'icons/ionicons/css/ionicons.css' %}">
 	<link rel="stylesheet" href="{%  static 'icons/rivolicons/style.css' %}">
-
+{% block css_addon %}
+{% endblock %}
 	<!-- CSS Custom -->
 	<link href="{%  static 'css/style.css' %}" rel="stylesheet">
 	
@@ -413,8 +414,9 @@
 <script type="text/javascript" src="{%  static 'js/jquery.countimator.js' %}"></script>
 <script type="text/javascript" src="{%  static 'js/jquery.countimator.wheel.js' %}"></script>
 <script type="text/javascript" src="{%  static 'js/jquery.simpletip-1.0.js' %}"></script>
+{% block js_addon %}
+{% endblock %}
 <script type="text/javascript" src="{%  static 'js/customs.js' %}"></script>
-
 
 </body>
 

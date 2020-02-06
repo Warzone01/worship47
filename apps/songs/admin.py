@@ -70,7 +70,7 @@ class ChordInLine(admin.StackedInline):
 
 
 class SongAdmin(admin.ModelAdmin):
-    list_display = ['title', 'title_eng', 'categ']
+    list_display = ['title', 'title_eng', 'translator', 'categ']
     inlines = [LinkInLine, ChordInLine]
 
     def categ(self, obj):

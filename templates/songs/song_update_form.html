@@ -1,487 +1,185 @@
+{% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block css_addon %}
+  <style>
+    input[type='checkbox'] + label {
+        background: url({% static 'css/images/checkbox_unchecked.png' %}) left center no-repeat;
+    }
 
-	<head>
+    input[type='checkbox']:checked + label {
+        background: url({% static 'css/images/checkbox_checked.png' %}) left center no-repeat;
+    }
+  </style>
+{% endblock %}
 
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-		<!-- Title Of Site -->
-		<title>Worship47</title>
-		<meta name="description" content="HTML Responsive Landing Page Template for Stock Photo Online Based on Twitter Bootstrap 3.x.x" />
-		<meta name="keywords" content="microstock, photo, stockphoto, photography, footage, vector, free photo, free image, photostock" />
-		<meta name="author" content="crenoveative">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		
-		<!-- Fav and Touch Icons -->
-		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
-		<link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
-		<link rel="shortcut icon" href="{% static 'images/ico/favicon.png' %}">
-	
-		<!-- CSS Plugins -->
-		<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" media="screen">
-		<link href="{% static 'css/animate.css' %}" rel="stylesheet">
-		<link href="{% static 'css/main.css' %}" rel="stylesheet">
-		<link href="{% static 'css/component.css' %}" rel="stylesheet">
-		
-		<!-- CSS Font Icons -->
-	  	<link rel="stylesheet" href="{% static 'icons/open-iconic/font/css/open-iconic-bootstrap.css' %}">
-	  	<link rel="stylesheet" href="{% static 'icons/font-awesome/css/font-awesome.min.css' %}">
-		<link rel="stylesheet" href="{% static 'icons/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}">
-		<link rel="stylesheet" href="{% static 'icons/ionicons/css/ionicons.css' %}">
-		<link rel="stylesheet" href="{% static 'icons/rivolicons/style.css' %}">
-	
-		<!-- CSS Custom -->
-		<link href="{% static 'css/style.css' %}" rel="stylesheet">
-		
-		<!-- Add your own style -->
-		<link href="{% static 'css/your-style.css' %}" rel="stylesheet">
-	
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		
-	</head>
+{% block content %}
 
-<body>
+  <div class="main-wrapper">
+    <div class="breadcrumb-wrapper">
 
-	<div class="modal fade modal-login modal-border-transparent" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
-		
-		<div class="modal-dialog">
-		
-			<div class="modal-content">
-				
-				<button type="button" class="btn btn-close close" data-dismiss="modal" aria-label="Close">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-				</button>
-				
-				<div class="clear"></div>
-				
-				<!-- Begin # DIV Form -->
-				<div id="modal-login-form-wrapper">
-					
-					<!-- Begin # Login Form -->
-					<form id="login-form">
-					
-						<div class="modal-body pb-5">
-					
-							<h4>Войти</h4>
-							
-							<div class="form-group"> 
-								<input id="login_username" class="form-control" placeholder="Логин" type="text">
-							</div>
-							<div class="form-group"> 
-								<input id="login_password" class="form-control" placeholder="Пароль" type="password">
-							</div>
-			
-							<div class="form-group mt-10 mb-10">
-								<div class="row gap-5">
-									<div class="col-xs-6 col-sm-6 col-md-6">
-										<div class="checkbox-block fa-checkbox"> 
-											<input id="remember_me_checkbox" name="remember_me_checkbox" class="checkbox" value="First Choice" type="checkbox"> 
-											<label class="" for="remember_me_checkbox">Запомнить</label>
-										</div>
-									</div>
-									<div class="col-xs-6 col-sm-6 col-md-6 text-right mt-5"> 
-										<button id="login_lost_btn" type="button" class="btn btn-link">Забыли пароль?</button>
-									</div>
-								</div>
-							</div>
-						
-						</div>
-						
-						<div class="modal-footer">
-						
-							<div class="row gap-10">
-								<div class="col-xs-6 col-sm-6 mb-10">
-									<button type="submit" class="btn btn-primary btn-sm btn-block">Войти</button>
-								</div>
-								<div class="col-xs-6 col-sm-6 mb-10">
-									<button type="submit" class="btn btn-main btn-sm btn-block btn-inverse" data-dismiss="modal" aria-label="Close">Отмена</button>
-								</div>
-							</div>
-							<div class="text-left">
-								Не зарегестрированы?
-								<button id="login_register_btn" type="button" class="btn btn-link">Регистрация</button>
-							</div>
-							
-						</div>
-					
-					</form>
-					<!-- End # Login Form -->
-								
-					<!-- Begin | Lost Password Form -->
-					<form id="lost-form" style="display:none;">
-						<div class="modal-body pb-5">
-						
-							<h4>Забыли пароль?</h4>
+      <div class="container">
 
-							<div class="form-group"> 
-								<input id="lost_email" class="form-control" type="text" placeholder="Ваш Email">
-							</div>
-							
-							<div class="text-center mt-10 mb-10">
-								<button id="lost_login_btn" type="button" class="btn btn-link">Войти</button> или
-								<button id="lost_register_btn" type="button" class="btn btn-link">Зарегистрироваться</button>
-							</div>
-							
-						</div>
-						
-						<div class="modal-footer mt-10">
-							
-							<div class="row gap-10">
-								<div class="col-xs-6 col-sm-6">
-									<button type="submit" class="btn btn-primary btn-sm btn-block">Подтвердить</button>
-								</div>
-								<div class="col-xs-6 col-sm-6">
-									<button type="submit" class="btn btn-main btn-sm btn-inverse btn-block" data-dismiss="modal" aria-label="Close">Отменить</button>
-								</div>
-							</div>
-							
-						</div>
-						
-					</form>
-					<!-- End | Lost Password Form -->
-								
-					<!-- Begin | Register Form -->
-					<form id="register-form" style="display:none;">
-					
-						<div class="modal-body pb-5">
+        <div class="row">
 
-							<h4>Регистрация</h4>
+          <div class="col-xs-12 col-sm-6">
+            <h2 class="page-title">Форма добавления песен</h2>
+          </div>
 
+          <div class="col-xs-12 col-sm-6">
+            <ol class="breadcrumb">
+              <li><a href="/">Домой</a></li>
+              <li class="active">Форма добавления песен</li>
+            </ol>
+          </div>
 
-							
-							<div class="form-group"> 
-								<input id="register_username" class="form-control" type="text" placeholder="Ваше имя">
-							</div>
-							
-							<div class="form-group"> 
-								<input id="register_email" class="form-control" type="email" placeholder="Почта">
-							</div>
-							
-							<div class="form-group"> 
-								<input id="register_password" class="form-control" type="password" placeholder="Пароль">
-							</div>
-							
-							<div class="form-group"> 
-								<input id="register_password_confirm" class="form-control" type="password" placeholder="Подтвердите пароль">
-							</div>
-							
-							<div class="clear mb-10"></div>
+        </div>
 
-						</div>
-							
-						<div class="modal-footer mt-10">
-						
-							<div class="row gap-10">
-								<div class="col-xs-6 col-sm-6 mb-10">
-									<button type="submit" class="btn btn-primary btn-sm btn-block">Регистрация</button>
-								</div>
-								<div class="col-xs-6 col-sm-6 mb-10">
-									<button type="submit" class="btn btn-main btn-sm btn-inverse btn-block" data-dismiss="modal" aria-label="Close">Отмена</button>
-								</div>
-							</div>
-							
-							<div class="text-left">
-									Уже есть аккаунт? <button id="register_login_btn" type="button" class="btn btn-link">Войти</button>
-							</div>
-							
-						</div>
-							
-					</form>
-					<!-- End | Register Form -->
-								
-				</div>
-				<!-- End # DIV Form -->
-								
-			</div>
-		</div>
-	
-	</div>
-	<!-- END # MODAL LOGIN -->
+      </div>
 
-	<!-- start Container Wrapper -->
-	<div class="wrapper container-wrapper">
+    </div>
+    <div class="content-wrapper">
+      <div class="container">
+        <div class="section-sm">
+          <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+              <div class="section-title mb-10">
+                <h4 class="text-left">Добавление песен</h4>
+              </div>
 
-		<!-- start Header -->
-		<header id="header">
-	  
-			<!-- start Navbar (Menu) -->
-			<nav class="navbar navbar-default navbar-fixed-top navbar-sticky-function">
-				
-				<div class="container">
-						
-					<div class="navbar-header">
-						<a class="navbar-brand" href="/"><i class="fa fa-headphones"></i> Worship47</a>
-					</div>
-						
-					<div id="navbar" class="collapse navbar-collapse navbar-arrow pull-left">
-					
-						<ul class="nav navbar-nav" id="responsive-menu">
-							<li>
-								<a href="/">Домой</a>
-							</li>
-							<li>
-								<a href="/songs/list/">Список песен</a>
+              <p>Просто следуйте полям и тому, что в них написано. Если у Вас
+                позник вопрос напишите мне в телеграм, вконтакт или просто
+                позвоните</p>
 
-							</li>
-							<li><a href="contact.html">Обратная связь</a></li>
-						</ul>
-					
-					</div><!--/.nav-collapse -->
-				
+              <h5 class="mb-15">Краткая инструкция</h5>
 
-					{% if user.is_authenticated %}
-						<div class="pull-right">
-                            <div class="navbar-mini">
-                                <ul class="clearfix">
-									{% if user.first_name or user.last_name %}
-										<li class="user-action">
-											<a href="#">Привет, {{ user.first_name }}!</a>
-										</li>
-									{% else %}
-										<li class="user-action">
-											<a href="#">Привет, {{ user.email }}!</a>
-										</li>
-					    			{% endif %}
-									<li class="user-action">
-										<a href="{% url 'logout' %}" data-toggle="modal" class="btn">Выйти</a>
-									</li>
-                                </ul>
-                            </div>
+              <p>Старайтесь заполнить как можно больше форм, но если не знаете,
+                что вводить форму или просто нечего, оставляйте её пустой. Для
+                добавления текста не отменяя форматирования <br> ctrl+shift+v </p>
+              <p>P.S. если вы не знаете, что вводить в форму, обязательно
+                делайте пометку и присылайте её мне, чтобы мы потом смогли найти
+                пропущенную информацию</p>
 
-                        </div>
+            </div>
 
-						{% else %}
+            <div class="col-xs-12 col-sm-8 col-md-9">
 
-                        <div class="pull-right">
-                            <div class="navbar-mini">
-                                <ul class="clearfix">
+              <div class="section-title mb-10">
+                <h4 class="text-left">Заполните поля:</h4>
+              </div>
 
-                                    <li class="user-action">
-                                        <a data-toggle="modal" href="#loginModal" class="btn">Вход/регистрация</a>
-                                    </li>
-                                </ul>
-                            </div>
+              {% block add_song_form %}
+                <form method="post">{% csrf_token %}
+                  {{ form.media }}
+                  {{ form.non_field_errors }}
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.title.id_for_label }}">Название <span class="font10 text-danger">(обязательно)</span></label>
+                      {{ form.title|add_class:"form-control"|append_attr:"placeholder:Название песни" }}
+                      <div class="help-block with-errors">{{ form.title.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.title_eng.id_for_label }}">Title (in english) </label>
+                      {{ form.title_eng|add_class:"form-control"|append_attr:"placeholder:Song's title" }}
+                      <div class="help-block with-errors">{{ form.title_eng.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="{{ form.text.id_for_label }}">Текст песни (рус) </label>
+                      {{ form.text|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.text.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="{{ form.text_eng.id_for_label }}">Song's text (eng) </label>
+                      {{ form.text_eng|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.text_eng.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="{{ form.chords.id_for_label }}">Аккорды </label>
+                      {{ form.chords|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.chords.errors }}</div>
+                    </div>
+                  </div>
 
-                        </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.presentation.id_for_label }}">Загрузить презентацию</label>
+                      {{ form.presentation|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
+                      <div class="help-block with-errors">{{ form.presentation.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.text_file.id_for_label }}">Загрузить файл с аккордами </label>
+                      {{ form.text_file|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
+                      <div class="help-block with-errors">{{ form.text_file.errors }}</div>
+                    </div>
+                  </div>
 
-						{% endif %}
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.author.id_for_label }}">Автор </label>
+                      {{ form.author|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.author.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.category.id_for_label }}">Категория (выбор нескольких - с Ctrl)</label>
+                      {{ form.category|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.category.errors }}</div>
+                    </div>
+                  </div>
 
-				</div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group checkbox-block">
+                      {{ form.is_translated|add_class:"checkbox" }}
+                      <label for="{{ form.is_translated.id_for_label }}">Это перевод </label>
+                      <div class="help-block with-errors">{{ form.is_translated.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+{#                      <label for="{{ form.translator.id_for_label }}">Переводчик </label>#}
+                      {{ form.translator }}
+                      <div class="help-block with-errors">{{ form.translator.errors }}</div>
+                    </div>
+                  </div>
 
-				<div id="slicknav-mobile"></div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group checkbox-block">
+                      <label for="{{ form.main_key.id_for_label }}">Тональность </label>
+                      {{ form.main_key|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.main_key.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.difficult.id_for_label }}">Трудность </label>
+                      {{ form.difficult|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.difficult.errors }}</div>
+                    </div>
+                  </div>
 
-				
-			</nav>
-			<!-- end Navbar (Menu) -->
+                  <div class="clear mb-20"></div>
 
-		</header>
-		<!-- end Header -->
-		
-		<!-- start Main Wrapper -->
-		<div class="main-wrapper">
-		
-			<div class="breadcrumb-wrapper">
-			
-				<div class="container">
+                  <input class="btn btn-success btn-sm" type="submit" value="Сохранить">
+                </form>
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-					<div class="row">
-					
-						<div class="col-xs-12 col-sm-6">
-							<h2 class="page-title">Форма добавления песен</h2>
-						</div>
-						
-						<div class="col-xs-12 col-sm-6">
-							<ol class="breadcrumb">
-								<li><a href="/">Домой</a></li>
-								<li class="active">Форма добавления песен</li>
-							</ol>
-						</div>
-						
-					</div>
-					
-				</div>
+{% endblock %}
 
-			</div>
-		
-			<div class="content-wrapper">
-			
-				<div class="container">
-				
-					<div class="section-sm">
-					
-						<div class="row">
-						
-							<div class="col-xs-12 col-sm-4 col-md-3">
-							
-								<div class="section-title mb-10">
-									<h4 class="text-left">Добавление песен</h4>
-								</div>
-								
-								<p>Просто следуйте полям и тому, что в них написано. Если у Вас позник вопрос напишите мне в телеграм, вконтакт или просто позвоните</p>
-								
-								<h5 class="mb-15">Краткая инструкция</h5>
-								
-								<p>Старайтесь заполнить как можно больше форм, но если не знаете, что вводить форму или просто нечего, оставляйте её пустой. Для добавления текста не отменяя форматирования <br> ctrl + shift + v </p>
-								<p>P.S. если вы не знаете, что вводить в форму, обязательно делайте пометку и присылайте её мне, чтобы мы потом смогли найти пропущенную информацию</p>
-								
-							</div>
-							
-							<div class="col-xs-12 col-sm-8 col-md-9">
-							
-								<div class="section-title mb-10">
-									<h4 class="text-left">Формы</h4>
-								</div>
-								
-								{% block content %}
-									<form method="post">{% csrf_token %}
-										{{ form.media }}
-										{{ form.as_p }}
-										<input class="btn btn-success btn-sm" type="submit" value="Сохранить">
-									</form>
-								{% endblock %}
-						</div>
-					
-					</div>
-					
-				</div>
-				
-			</div>
-			<!-- end Main Wrapper -->
-			
-			<div class="footer-wrapper scrollspy-footer">
-				
-				<footer class="main-footer">
-				
-					<div class="container">
-					
-						<div class="row">
-						
-							<div class="col-xs-12 col-sm-12 col-sm-4 col-md-3 mb-30-xs">
-							
-								<ul class="menu-footer">
-								
-									<li><a href="#">О нас</a></li>
-									<li><a href="/song/">Список песен</a></li>
-									<li><a href="/">Главная страница</a></li>
-									
-								</ul>
-								
-							</div>
-							
-							<div class="col-xs-12 col-sm-12 col-sm-8 col-md-9">
-							
-								
-								<div class="row">
-									
-									<div class="col-xs-12 col-sm-12 col-md-6 mt-30-sm">
-										<h4 class="footer-title">Подпишитесь на обновления</h4>
-										<form class="newsletter-footer">
-										
-											<div class="input-group">
-							
-												<input type="text" class="form-control" placeholder="Ваш электронный адрес" >
-												
-												<div class="input-group-btn">
-													<button class="btn btn-primary">Подтвердить</button>
-												</div>
-												
-											</div><!-- /input-group -->
-	
-											
-										</form>
-										
-										<div class="clear mb-30"></div>
-										
-										<h5 class="footer-title">Возникли вопросы?</h5>
-										<p class="footer-email uppercase">Пишите на почту <a href="#">kirill.trumpeter@gmail.com</a></p>
-	
-									</div>
-								
-								</div>
-							
-							</div>
-	
-						</div>
-						
-						<div class="bb mt-40"></div>
-						<div class="mb-40"></div>
-					</div>
-					
-				</footer>
-				
-				<footer class="secondary-footer">
-				
-					<div class="container">
-					
-						<div class="row">
-						
-							<div class="col-sm-6">
-								<p class="copy-right">&#169; Copyright 2018 Worship47</p>
-							</div>
-							
-							<div class="col-sm-6">
-								<ul class="secondary-footer-menu clearfix">
-									<li><a href="/account">Личный кабинет</a></li>
-									<li><a href="#">Вход</a></li>
-									<li><a href="#">Регистрация</a></li>
-								</ul>
-							</div>
-							
-						</div>
-					
-					</div>
-					
-				</footer>
-				
-			</div>
-			
-	 </div> <!-- / .wrapper -->
-	<!-- end Container Wrapper -->
- 
- 
- <!-- start Back To Top -->
-<div id="back-to-top">
-   <a href="#"><i class="ion-ios-arrow-up"></i></a>
-</div>
-<!-- end Back To Top -->
-
-
- 
-<!-- JS -->
-<script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/SmoothScroll.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.slicknav.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.placeholder.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/spin.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.introLoader.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/select2.full.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.responsivegrid.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/readmore.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap-select.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap-filestyle.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.flex-images.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.countimator.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.countimator.wheel.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.simpletip-1.0.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/customs.js' %}"></script>
-
-
-</body>
-
-
-</html>

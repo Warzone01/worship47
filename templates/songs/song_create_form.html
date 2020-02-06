@@ -2,6 +2,18 @@
 {% load static %}
 {% load widget_tweaks %}
 
+{% block css_addon %}
+  <style>
+    input[type='checkbox'] + label {
+        background: url({% static 'css/images/checkbox_unchecked.png' %}) left center no-repeat;
+    }
+
+    input[type='checkbox']:checked + label {
+        background: url({% static 'css/images/checkbox_checked.png' %}) left center no-repeat;
+    }
+  </style>
+{% endblock %}
+
 {% block content %}
 
   <div class="main-wrapper">
@@ -44,8 +56,7 @@
 
               <p>Старайтесь заполнить как можно больше форм, но если не знаете,
                 что вводить форму или просто нечего, оставляйте её пустой. Для
-                добавления текста не отменяя форматирования <br> ctrl + shift +
-                v </p>
+                добавления текста не отменяя форматирования <br> ctrl+shift+v </p>
               <p>P.S. если вы не знаете, что вводить в форму, обязательно
                 делайте пометку и присылайте её мне, чтобы мы потом смогли найти
                 пропущенную информацию</p>
@@ -100,21 +111,66 @@
 
                   <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
-                      <label for="{{ form.presentation.id_for_label }}">Выберите файл</label>
-                      {{ form.presentation|append_attr:"placeholder:Презентация" }}
+                      <label for="{{ form.presentation.id_for_label }}">Загрузить презентацию</label>
+                      {{ form.presentation|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
                       <div class="help-block with-errors">{{ form.presentation.errors }}</div>
                     </div>
                   </div>
                   <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
-                      <label for="{{ form.text_file.id_for_label }}">Выберите файл </label>
-                      {{ form.text_file|append_attr:"placeholder:Аккорды" }}
+                      <label for="{{ form.text_file.id_for_label }}">Загрузить файл с аккордами </label>
+                      {{ form.text_file|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
                       <div class="help-block with-errors">{{ form.text_file.errors }}</div>
                     </div>
                   </div>
 
-                  <p>========================</p>
-                  {{ form.as_p }}
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.author.id_for_label }}">Автор </label>
+                      {{ form.author|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.author.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.category.id_for_label }}">Категория (выбор нескольких - с Ctrl)</label>
+                      {{ form.category|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.category.errors }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group checkbox-block">
+                      {{ form.is_translated|add_class:"checkbox"|append_attr:"checked:checked" }}
+                      <label for="{{ form.is_translated.id_for_label }}">Это перевод </label>
+                      <div class="help-block with-errors">{{ form.is_translated.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+{#                      <label for="{{ form.translator.id_for_label }}">Переводчик </label>#}
+                      {{ form.translator }}
+                      <div class="help-block with-errors">{{ form.translator.errors }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group checkbox-block">
+                      <label for="{{ form.main_key.id_for_label }}">Тональность </label>
+                      {{ form.main_key|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.main_key.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.difficult.id_for_label }}">Трудность </label>
+                      {{ form.difficult|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.difficult.errors }}</div>
+                    </div>
+                  </div>
+
+                  <div class="clear mb-20"></div>
+
                   <input class="btn btn-success btn-sm" type="submit" value="Сохранить">
                 </form>
               {% endblock %}
@@ -126,3 +182,4 @@
   </div>
 
 {% endblock %}
+
