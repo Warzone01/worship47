@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
 
@@ -54,16 +55,67 @@
             <div class="col-xs-12 col-sm-8 col-md-9">
 
               <div class="section-title mb-10">
-                <h4 class="text-left">Формы</h4>
+                <h4 class="text-left">Заполните поля:</h4>
               </div>
 
               {% block add_song_form %}
-                <form method="post">
-                  {% csrf_token %}
+                <form method="post">{% csrf_token %}
                   {{ form.media }}
+                  {{ form.non_field_errors }}
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.title.id_for_label }}">Название <span class="font10 text-danger">(обязательно)</span></label>
+                      {{ form.title|add_class:"form-control"|append_attr:"placeholder:Название песни" }}
+                      <div class="help-block with-errors">{{ form.title.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.title_eng.id_for_label }}">Title (in english) </label>
+                      {{ form.title_eng|add_class:"form-control"|append_attr:"placeholder:Song's title" }}
+                      <div class="help-block with-errors">{{ form.title_eng.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="{{ form.text.id_for_label }}">Текст песни (рус) </label>
+                      {{ form.text|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.text.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="{{ form.text_eng.id_for_label }}">Song's text (eng) </label>
+                      {{ form.text_eng|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.text_eng.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="{{ form.chords.id_for_label }}">Аккорды </label>
+                      {{ form.chords|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.chords.errors }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.presentation.id_for_label }}">Выберите файл</label>
+                      {{ form.presentation|append_attr:"placeholder:Презентация" }}
+                      <div class="help-block with-errors">{{ form.presentation.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.text_file.id_for_label }}">Выберите файл </label>
+                      {{ form.text_file|append_attr:"placeholder:Аккорды" }}
+                      <div class="help-block with-errors">{{ form.text_file.errors }}</div>
+                    </div>
+                  </div>
+
+                  <p>========================</p>
                   {{ form.as_p }}
-                  <input class="btn btn-success btn-sm" type="submit"
-                         value="Сохранить">
+                  <input class="btn btn-success btn-sm" type="submit" value="Сохранить">
                 </form>
               {% endblock %}
             </div>
