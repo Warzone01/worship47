@@ -7,37 +7,14 @@ from django.views.generic import ListView, DetailView, UpdateView, CreateView, \
     TemplateView
 
 from songs.forms import SongForm
-from songs.models import Song
+from songs.models import Song, Category
 
 
 class Index(TemplateView):
     template_name = 'worship/index.html'
 
     def get_context_data(self, **kwargs):
-        # Fixme: Hardcoded categs. Very bad.
-        categs = [
-            {
-                'slug': 'osnovnye',
-                'name': 'Основные',
-                'image': 'church.jpg',
-            },
-            {
-                'slug': 'rozhdestvenskie',
-                'name': 'Рождественские',
-                'image': 'christmas.jpg',
-            },
-            {
-                'slug': 'detskie',
-                'name': 'Детские',
-                'image': 'kids.jpg',
-            },
-            {
-                'slug': 'paskhalnye',
-                'name': 'Пасхальные',
-                'image': 'easter.jpeg',
-            },
-        ]
-        # Song.category.tag_model.objects.all()
+        categs = Category.objects.all()[:4]
         self.extra_context = {'categs': categs}
 
         kwargs = super(Index, self).get_context_data(**kwargs)
