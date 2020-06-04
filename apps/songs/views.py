@@ -3,10 +3,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin, \
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, UpdateView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, \
+    TemplateView
 
-from .forms import SongForm
-from .models import Song, Media
+from songs.forms import SongForm
+from songs.models import Song, Category
+
+
+class Index(TemplateView):
+    template_name = 'worship/index.html'
+
+    def get_context_data(self, **kwargs):
+        categs = Category.objects.all()[:4]
+        self.extra_context = {'categs': categs}
+
+        kwargs = super(Index, self).get_context_data(**kwargs)
+        return kwargs
 
 
 class SongList(ListView):

@@ -114,3 +114,6 @@ venv.bak/
 
 media/
 !/env/dot.env.template
+
+.directory
+*.db

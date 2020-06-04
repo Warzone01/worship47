@@ -7,5 +7,4 @@ urlpatterns = [
     path('song/<int:pk>/', SongDetail.as_view(), name='song-detail'),
     path('song/<int:pk>/edit/', SongUpdate.as_view(), name='song-update'),
     path('song/', SongCreate.as_view(), name='song-create'),
-    # path('categ/<slug:categ_slug>/', views.list, name='categ'),
 ]

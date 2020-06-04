@@ -46,6 +46,8 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'ckeditor',
     'tagulous',
+    'versatileimagefield',
+    'widget_tweaks',
 ]
 
 LOCAL_APPS = [
