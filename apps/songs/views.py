@@ -45,10 +45,10 @@ class SongUpdate(PermissionRequiredMixin, UpdateView):
 class SongCreate(PermissionRequiredMixin, CreateView):
     form_class = SongForm
     model = Song
-    model2 = Media
     template_name_suffix = '_create_form'
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
+
 
     def get_success_url(self):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})

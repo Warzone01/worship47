@@ -1,12 +1,10 @@
 from django import forms
-from .models import Song, Media
+from .models import Song
 
 
 class SongForm(forms.ModelForm):
 
-
     class Meta:
         model = Song
-        model2 = Media
         exclude = ['created', 'modified']
 

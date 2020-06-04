@@ -38,7 +38,6 @@ class Song(TimeStampedModel):
     )
     # category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     author = models.CharField(max_length=100, blank=True, default='')
-    is_translated = models.BooleanField(blank=True, default=True)
     translator = TagField(
         force_lowercase=False,
         max_count=6,
@@ -58,6 +57,8 @@ class Song(TimeStampedModel):
         initial=["Простой", "Средний", "Сложный"],
         blank=True,
     )
+
+    mediaUrl = models.CharField(max_length=100, blank=True)
 
     class Meta:
         ordering = ['id']
