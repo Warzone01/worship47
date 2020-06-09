@@ -148,8 +148,8 @@
                   </div>
                   <div class="col-xs-6 col-sm-3">
                     <div class="form-group">
-{#                      <label for="{{ form.translator.id_for_label }}">Переводчик </label>#}
-                      {{ form.translator }}
+                     <label for="{{ form.translator.id_for_label }}">Переводчик </label>
+                        {{ form.translator }}
                       <div class="help-block with-errors">{{ form.translator.errors }}</div>
                     </div>
                   </div>
@@ -169,8 +169,11 @@
                     </div>
                   </div>
 
-
-
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      {{Link}}
+                    </div>
+                  </div>
 
                   <div class="clear mb-20"></div>
 

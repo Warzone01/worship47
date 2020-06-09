@@ -148,7 +148,7 @@
                   </div>
                   <div class="col-xs-6 col-sm-3">
                     <div class="form-group">
-{#                      <label for="{{ form.translator.id_for_label }}">Переводчик </label>#}
+                      <label for="{{ form.translator.id_for_label }}">Переводчик </label>
                       {{ form.translator }}
                       <div class="help-block with-errors">{{ form.translator.errors }}</div>
                     </div>
@@ -169,15 +169,13 @@
                     </div>
                   </div>
 
-                  {% for formset in inlines %}
-                      <div class="col-xs-12 col-sm-6">
-                        <hr>
-                        <div class="form-group">
-
-                          {{ formset }}
-                        </div>
+                    <div class="col-xs-6 col-sm-3">
+                      <hr>
+                      <div class="form-group">
+                        {{ Link  }}
                       </div>
-                  {% endfor %}
+                    </div>
+
 
                   <div class="clear mb-20"></div>
 

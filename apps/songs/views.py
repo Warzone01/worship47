@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, \
     TemplateView
-from extra_views import CreateWithInlinesView, InlineFormSetFactory
+from extra_views import CreateWithInlinesView, InlineFormSetFactory, UpdateWithInlinesView, NamedFormsetsMixin
 
 # from songs.forms import SongForm
 # from songs.models import Song, Category
@@ -45,9 +45,13 @@ class SongList(ListView):
 class SongDetail(LoginRequiredMixin, DetailView):
     model = Song
 
+
 class LinkView(InlineFormSetFactory):
     model = Link
-    fields = ['url', 'ytb_id', 'description']
+    fields = ['url', 'description']
+    initial = [{'Url': 'url'}, {'Description': 'description'}]
+    prefix = 'item-form'
+    factory_kwargs = {'extra': 0, 'max_num': None, 'can_order': False, 'can_delete': True}
 
 
 class ChordsView(InlineFormSetFactory):
@@ -55,12 +59,15 @@ class ChordsView(InlineFormSetFactory):
     fields = ['chords', 'key']
 
 
-class SongUpdate(PermissionRequiredMixin, UpdateView):
+class SongUpdate(PermissionRequiredMixin, UpdateWithInlinesView, NamedFormsetsMixin):
     form_class = SongForm
     model = Song
     template_name_suffix = '_update_form'
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
+    inlines = [ChordsView, LinkView]
+    inlines_names = ['Chord', 'Link']
+
 
     def get_success_url(self):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})
@@ -74,6 +81,7 @@ class SongCreate(PermissionRequiredMixin, CreateWithInlinesView):
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
     inlines = [ChordsView, LinkView]
+    inlines_names = ['Chord', 'Link']
 
     def get_success_url(self):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})
