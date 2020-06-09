@@ -169,6 +169,16 @@
                     </div>
                   </div>
 
+                  {% for formset in inlines %}
+                      <div class="col-xs-12 col-sm-6">
+                        <hr>
+                        <div class="form-group">
+
+                          {{ formset }}
+                        </div>
+                      </div>
+                  {% endfor %}
+
                   <div class="clear mb-20"></div>
 
                   <input class="btn btn-success btn-sm" type="submit" value="Сохранить">

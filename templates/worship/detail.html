@@ -340,7 +340,7 @@
                                         {% for link in info.link_set.all %}
                                             <hr>
                                             <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ link.mediaUrl }}" allowfullscreen></iframe>
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ link.url }}" allowfullscreen></iframe>
                                             </div>
                                         {% endfor %}
                                     {% endif %}

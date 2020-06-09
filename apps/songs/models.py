@@ -73,6 +73,7 @@ class Song(TimeStampedModel):
     text_file = models.FileField(upload_to="text/", blank=True)
     category = models.ManyToManyField(Category, blank=True)
     author = models.CharField(max_length=100, blank=True, default='')
+    is_translated = models.BooleanField(blank=True, default=True)
     translator = TagField(
         max_count=6,
         initial=['Фурманов', 'Зуев', 'Иваник', 'Куга', 'Жданов', 'Герасимович'],
@@ -82,8 +83,6 @@ class Song(TimeStampedModel):
                                 default="E", blank=True)
     difficult = models.CharField(max_length=6, choices=DIFFICULT,
                                  default="easy", blank=True)
-
-    mediaUrl = models.CharField(max_length=100, blank=True)
 
     class Meta:
         ordering = ['id']

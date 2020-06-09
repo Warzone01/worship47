@@ -5,9 +5,13 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, \
     TemplateView
+from extra_views import CreateWithInlinesView, InlineFormSetFactory
 
-from songs.forms import SongForm
-from songs.models import Song, Category
+# from songs.forms import SongForm
+# from songs.models import Song, Category
+
+from .forms import SongForm
+from .models import Category, Song, Chord, Link
 
 
 class Index(TemplateView):
@@ -41,6 +45,15 @@ class SongList(ListView):
 class SongDetail(LoginRequiredMixin, DetailView):
     model = Song
 
+class LinkView(InlineFormSetFactory):
+    model = Link
+    fields = ['url', 'ytb_id', 'description']
+
+
+class ChordsView(InlineFormSetFactory):
+    model = Chord
+    fields = ['chords', 'key']
+
 
 class SongUpdate(PermissionRequiredMixin, UpdateView):
     form_class = SongForm
@@ -54,13 +67,13 @@ class SongUpdate(PermissionRequiredMixin, UpdateView):
         return obj_url
 
 
-class SongCreate(PermissionRequiredMixin, CreateView):
+class SongCreate(PermissionRequiredMixin, CreateWithInlinesView):
     form_class = SongForm
     model = Song
     template_name_suffix = '_create_form'
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
-
+    inlines = [ChordsView, LinkView]
 
     def get_success_url(self):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})
