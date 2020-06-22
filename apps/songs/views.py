@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.contrib.auth.mixins import LoginRequiredMixin, \
     PermissionRequiredMixin
 from django.contrib.auth.views import LoginView
@@ -48,15 +50,16 @@ class SongDetail(LoginRequiredMixin, DetailView):
 
 class LinkView(InlineFormSetFactory):
     model = Link
-    fields = ['url', 'description']
-    initial = [{'Url': 'url'}, {'Description': 'description'}]
-    prefix = 'item-form'
-    factory_kwargs = {'extra': 0, 'max_num': None, 'can_order': False, 'can_delete': True}
+    fields = "__all__"
+    # prefix = 'item_form'
+    factory_kwargs = {'extra': 3, 'max_num': None, 'can_order': False, 'can_delete': False}
 
 
 class ChordsView(InlineFormSetFactory):
     model = Chord
-    fields = ['chords', 'key']
+    fields = "__all__"
+    # prefix = 'item_form'
+    factory_kwargs = {'extra': 3, 'max_num': 3, 'can_order': False, 'can_delete': False}
 
 
 class SongUpdate(PermissionRequiredMixin, UpdateWithInlinesView, NamedFormsetsMixin):
@@ -66,22 +69,21 @@ class SongUpdate(PermissionRequiredMixin, UpdateWithInlinesView, NamedFormsetsMi
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
     inlines = [ChordsView, LinkView]
-    inlines_names = ['Chord', 'Link']
-
+    inlines_names = ['chord', 'link']
 
     def get_success_url(self):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})
         return obj_url
 
 
-class SongCreate(PermissionRequiredMixin, CreateWithInlinesView):
+class SongCreate(PermissionRequiredMixin, CreateWithInlinesView): #, NamedFormsetsMixin):
     form_class = SongForm
     model = Song
     template_name_suffix = '_create_form'
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
     inlines = [ChordsView, LinkView]
-    inlines_names = ['Chord', 'Link']
+    # inlines_names = ['chord', 'link']
 
     def get_success_url(self):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})

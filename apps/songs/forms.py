@@ -3,7 +3,7 @@ from extra_views import InlineFormSetFactory, UpdateWithInlinesView, CreateWithI
     FormSetView, InlineFormSetView
 from extra_views.generic import GenericInlineFormSetView
 
-from .models import Song
+from .models import Song, Link
 
 
 class SongForm(forms.ModelForm):
@@ -11,7 +11,6 @@ class SongForm(forms.ModelForm):
     class Meta:
         model = Song
         exclude = ['created', 'modified']
-
 
 
 #

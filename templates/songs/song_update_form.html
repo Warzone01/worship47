@@ -70,8 +70,7 @@
               </div>
 
               {% block add_song_form %}
-                <form method="post">{% csrf_token %}
-                  {{ form.media }}
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
                   {{ form.non_field_errors }}
                   <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
@@ -168,13 +167,60 @@
                       <div class="help-block with-errors">{{ form.difficult.errors }}</div>
                     </div>
                   </div>
-
-                  <div class="col-xs-6 col-sm-3">
-                    <div class="form-group">
-                      {{Link}}
+                    {% for formset in inlines %}
+                      {{ formset }}
+                    {% endfor %}
+                  {% for c in chord %}
+                      <div class="col-xs-12 col-sm-6">
+                      <div class="form-group">
+                        <hr>
+                        <label for="{{ c.chords.id_for_label }}">Файл с аккордами </label>
+                        {{ c.chords|add_class:"form-control" }}
+                        <div class="help-block with-errors">{{ c.chords.errors }}</div>
+                      </div>
                     </div>
-                  </div>
+                    <div class="col-xs-12 col-sm-6">
+                      <div class="form-group">
+                        <hr>
+                        <label for="{{ c.key.id_for_label }}">Тональность </label>
+                        {{ c.key|add_class:"form-control" }}
+                        <div class="help-block with-errors">{{ c.key.errors }}</div>
+                      </div>
 
+                    </div>
+
+                  {% endfor %}
+
+                  {% for l in link %}
+                    <div class="col-xs-6 col-sm-3">
+                      <div class="form-group">
+                        <hr>
+                        <label for="{{ l.url.id_for_label }}">URL </label>
+                        {{ l.url|add_class:"form-control" }}
+                        <div class="help-block with-errors">{{ link.url.errors }}</div>
+                      </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-3">
+                      <div class="form-group">
+                        <hr>
+                        <label for="{{ l.ytb_id.id_for_label }}">youtube id </label>
+                        {{ l.ytb_id|add_class:"form-control" }}
+                        <div class="help-block with-errors">{{ link.ytb_id.errors }}</div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                      <div class="form-group">
+                        <hr>
+                        <label for="{{ l.description.id_for_label }}">Описание </label>
+                        {{ l.description|add_class:"form-control" }}
+                        <div class="help-block with-errors">{{ link.description.errors }}</div>
+                      </div>
+                    </div>
+
+                  {% endfor %}
+
+
+                  <div class="clear mb-20"></div>
                   <div class="clear mb-20"></div>
 
                   <input class="btn btn-success btn-sm" type="submit" value="Сохранить">
