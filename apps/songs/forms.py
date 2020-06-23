@@ -3,7 +3,7 @@ from extra_views import InlineFormSetFactory, UpdateWithInlinesView, CreateWithI
     FormSetView, InlineFormSetView
 from extra_views.generic import GenericInlineFormSetView
 
-from .models import Song, Link
+from .models import Song
 
 
 class SongForm(forms.ModelForm):

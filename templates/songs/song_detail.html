@@ -359,16 +359,6 @@
                                             {% endif %}
                                         </div>
 
-
-
-                                    {% if info.link_set %}
-                                        {% for link in info.link_set.all %}
-                                            <hr>
-                                            <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ link.url }}" allowfullscreen></iframe>
-                                            </div>
-                                        {% endfor %}
-                                    {% endif %}
                                     <hr>
 
 
@@ -398,6 +388,50 @@
 											<button type="button" class="btn btn-primary btn-sm">Скачать текст</button>
 										</a>
 									{% endif %}
+
+									{% if object.chordsFile1 %}
+										<a href="{{ object.chordsFile1.url }}" download="{{ object.name }}">
+											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>
+											{% if object.chordKey1 %}
+													Тональность: {{ object.chordKey1 }}
+											{% endif %}
+
+										</a>
+									{% endif %}
+									<br>
+									<br>
+									{% if object.chordsFile2 %}
+										<a href="{{ object.chordsFile1.url }}" download="{{ object.name }}">
+											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>
+											{% if object.chordKey2 %}
+													Тональность: {{ object.chordKey2 }}
+											{% endif %}
+
+										</a>
+									{% endif %}
+									<br>
+									<br>
+									{% if object.ytb_id1 %}
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ object.ytb_id1 }}" allowfullscreen></iframe>
+										</div></iframe>
+									{% endif %}
+									<br>
+									<br>
+									{% if object.ytb_id2 %}
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ object.ytb_id2 }}" allowfullscreen></iframe>
+										</div></iframe>
+									{% endif %}
+									<br>
+									<br>
+									{% if object.ytb_id3 %}
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ object.ytb_id3 }}" allowfullscreen></iframe>
+										</div></iframe>
+									{% endif %}
+									<br>
+									<br>
 									{%if user.is_staff %}
                                         <a href="{% url 'song-update' song.id %}"><b>edit</b></a>
 									{% endif %}

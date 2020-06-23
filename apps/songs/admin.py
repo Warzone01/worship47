@@ -4,7 +4,7 @@ from django.contrib.admin.widgets import AdminFileWidget
 from django.utils.safestring import mark_safe
 from tagulous import admin as tagadmin
 import threading
-from .models import Song, Link, Chord, Category
+from .models import Song, Category #Link, Chord,
 
 
 class AdminImageWidget(AdminFileWidget):
@@ -59,19 +59,19 @@ class CategAdmin(ImageWidgetAdmin):
     admin_image.allow_tags = True
 
 
-class LinkInLine(admin.StackedInline):
-    model = Link
-    extra = 0
-
-
-class ChordInLine(admin.StackedInline):
-    model = Chord
-    extra = 0
+# class LinkInLine(admin.StackedInline):
+#     model = Link
+#     extra = 0
+#
+#
+# class ChordInLine(admin.StackedInline):
+#     model = Chord
+#     extra = 0
 
 
 class SongAdmin(admin.ModelAdmin):
     list_display = ['title', 'title_eng', 'translator', 'categ']
-    inlines = [LinkInLine, ChordInLine]
+    # inlines = [LinkInLine, ChordInLine]
 
     def categ(self, obj):
         categs = []
@@ -81,5 +81,5 @@ class SongAdmin(admin.ModelAdmin):
 
 
 tagadmin.register(Song, SongAdmin)
-admin.site.register(Link)
-admin.site.register(Chord)
+# admin.site.register(Link)
+# admin.site.register(Chord)

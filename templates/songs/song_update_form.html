@@ -117,7 +117,7 @@
                   </div>
                   <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
-                      <label for="{{ form.text_file.id_for_label }}">Загрузить файл с аккордами </label>
+                      <label for="{{ form.text_file.id_for_label }}">Загрузить файл с текстом </label>
                       {{ form.text_file|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
                       <div class="help-block with-errors">{{ form.text_file.errors }}</div>
                     </div>
@@ -167,57 +167,61 @@
                       <div class="help-block with-errors">{{ form.difficult.errors }}</div>
                     </div>
                   </div>
-                    {% for formset in inlines %}
-                      {{ formset }}
-                    {% endfor %}
-                  {% for c in chord %}
-                      <div class="col-xs-12 col-sm-6">
-                      <div class="form-group">
-                        <hr>
-                        <label for="{{ c.chords.id_for_label }}">Файл с аккордами </label>
-                        {{ c.chords|add_class:"form-control" }}
-                        <div class="help-block with-errors">{{ c.chords.errors }}</div>
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                      <div class="form-group">
-                        <hr>
-                        <label for="{{ c.key.id_for_label }}">Тональность </label>
-                        {{ c.key|add_class:"form-control" }}
-                        <div class="help-block with-errors">{{ c.key.errors }}</div>
-                      </div>
 
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.cordsFile1.id_for_label }}">Файл с аккордами 1</label>
+                      {{ form.chordsFile1|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
+                      <div class="help-block with-errors">{{ form.chordsFile1.errors }}</div>
                     </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.cordsFile2.id_for_label }}">Файл с аккордами 2</label>
+                      {{ form.chordsFile2|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
+                      <div class="help-block with-errors">{{ form.chordsFile2.errors }}</div>
+                    </div>
+                  </div>
 
-                  {% endfor %}
+                  <div class="clear mb-20"></div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.chordKey1.id_for_label }}">Тональность 1</label>
+                      {{ form.chordKey1|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.chordsFile1.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.chordKey2.id_for_label }}">Тональность 2</label>
+                      {{ form.chordKey2|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.chordKey2.errors }}</div>
+                    </div>
+                  </div>
+<!--                  <div class="clear mb-20"></div>-->
+                  <div class="clear mb-20"></div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.ytb_id1.id_for_label }}">Youtube ID</label>
+                      {{ form.ytb_id1|add_class:"form_control" }}
+                      <div class="help-block with-errors">{{ form.ytb_id1.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.ytb_id2.id_for_label }}">Youtube ID</label>
+                      {{ form.ytb_id2|add_class:"form_control" }}
+                      <div class="help-block with-errors">{{ form.ytb_id2.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.ytb_id3.id_for_label }}">Youtube ID</label>
+                      {{ form.ytb_id3|add_class:"form_control" }}
+                      <div class="help-block with-errors">{{ form.ytb_id3.errors }}</div>
+                    </div>
+                  </div>
 
-                  {% for l in link %}
-                    <div class="col-xs-6 col-sm-3">
-                      <div class="form-group">
-                        <hr>
-                        <label for="{{ l.url.id_for_label }}">URL </label>
-                        {{ l.url|add_class:"form-control" }}
-                        <div class="help-block with-errors">{{ link.url.errors }}</div>
-                      </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-                      <div class="form-group">
-                        <hr>
-                        <label for="{{ l.ytb_id.id_for_label }}">youtube id </label>
-                        {{ l.ytb_id|add_class:"form-control" }}
-                        <div class="help-block with-errors">{{ link.ytb_id.errors }}</div>
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                      <div class="form-group">
-                        <hr>
-                        <label for="{{ l.description.id_for_label }}">Описание </label>
-                        {{ l.description|add_class:"form-control" }}
-                        <div class="help-block with-errors">{{ link.description.errors }}</div>
-                      </div>
-                    </div>
-
-                  {% endfor %}
 
 
                   <div class="clear mb-20"></div>

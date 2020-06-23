@@ -13,7 +13,7 @@ from extra_views import CreateWithInlinesView, InlineFormSetFactory, UpdateWithI
 # from songs.models import Song, Category
 
 from .forms import SongForm
-from .models import Category, Song, Chord, Link
+from .models import Category, Song #, Chord, Link
 
 
 class Index(TemplateView):
@@ -47,29 +47,29 @@ class SongList(ListView):
 class SongDetail(LoginRequiredMixin, DetailView):
     model = Song
 
+#
+# class LinkView(InlineFormSetFactory):
+#     model = Link
+#     fields = "__all__"
+#     # prefix = 'item_form'
+#     factory_kwargs = {'extra': 3, 'max_num': None, 'can_order': False, 'can_delete': False}
+#
+#
+# class ChordsView(InlineFormSetFactory):
+#     model = Chord
+#     fields = "__all__"
+#     # prefix = 'item_form'
+#     factory_kwargs = {'extra': 3, 'max_num': 3, 'can_order': False, 'can_delete': False}
 
-class LinkView(InlineFormSetFactory):
-    model = Link
-    fields = "__all__"
-    # prefix = 'item_form'
-    factory_kwargs = {'extra': 3, 'max_num': None, 'can_order': False, 'can_delete': False}
 
-
-class ChordsView(InlineFormSetFactory):
-    model = Chord
-    fields = "__all__"
-    # prefix = 'item_form'
-    factory_kwargs = {'extra': 3, 'max_num': 3, 'can_order': False, 'can_delete': False}
-
-
-class SongUpdate(PermissionRequiredMixin, UpdateWithInlinesView, NamedFormsetsMixin):
+class SongUpdate(PermissionRequiredMixin, UpdateWithInlinesView): #, NamedFormsetsMixin):
     form_class = SongForm
     model = Song
     template_name_suffix = '_update_form'
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
-    inlines = [ChordsView, LinkView]
-    inlines_names = ['chord', 'link']
+    # inlines = [ChordsView, LinkView]
+    # inlines_names = ['chord', 'link']
 
     def get_success_url(self):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})
@@ -82,7 +82,7 @@ class SongCreate(PermissionRequiredMixin, CreateWithInlinesView): #, NamedFormse
     template_name_suffix = '_create_form'
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
-    inlines = [ChordsView, LinkView]
+    # inlines = [ChordsView, LinkView]
     # inlines_names = ['chord', 'link']
 
     def get_success_url(self):
