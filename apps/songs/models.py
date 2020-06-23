@@ -2,8 +2,24 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
+from pytils import translit
 from tagulous.models import TagField
 from versatileimagefield.fields import VersatileImageField
+
+def chords_path(instance, filename):
+    path = f"chords/{translit.slugify(filename)}"
+    return path
+
+
+def pres_path(instance, filename):
+    path = f"presentations/{translit.slugify(filename)}"
+    return path
+
+
+def text_path(instance, filename):
+    path = f"text/{translit.slugify(filename)}"
+    return path
+
 
 CHORDS = (
     ("C","C"),
@@ -69,8 +85,8 @@ class Song(TimeStampedModel):
     text = RichTextField(blank=True)
     text_eng = RichTextField(blank=True)
     chords = RichTextField(blank=True)
-    presentation = models.FileField(upload_to='presentations/', blank=True)
-    text_file = models.FileField(upload_to="text/", blank=True)
+    presentation = models.FileField(upload_to=pres_path, blank=True)
+    text_file = models.FileField(upload_to=text_path, blank=True)
     category = models.ManyToManyField(Category, blank=True)
     author = models.CharField(max_length=100, blank=True, default='')
     is_translated = models.BooleanField(blank=True, default=True)
@@ -84,10 +100,10 @@ class Song(TimeStampedModel):
     difficult = models.CharField(max_length=6, choices=DIFFICULT,
                                  default="easy", blank=True)
 
-    chordsFile1 = models.FileField(upload_to="chords/", blank=True)
+    chordsFile1 = models.FileField(upload_to=chords_path, blank=True)
     chordKey1 = models.CharField(max_length=2, choices=CHORDS,
                             default="E", blank=True)
-    chordsFile2 = models.FileField(upload_to="chords/", blank=True)
+    chordsFile2 = models.FileField(upload_to=chords_path, blank=True)
     chordKey2 = models.CharField(max_length=2, choices=CHORDS,
                             default="E", blank=True)
 
