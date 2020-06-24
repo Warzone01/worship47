@@ -7,10 +7,6 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, \
     TemplateView
-from extra_views import CreateWithInlinesView, InlineFormSetFactory, UpdateWithInlinesView, NamedFormsetsMixin
-
-# from songs.forms import SongForm
-# from songs.models import Song, Category
 
 from .forms import SongForm
 from .models import Category, Song #, Chord, Link
@@ -47,43 +43,25 @@ class SongList(ListView):
 class SongDetail(LoginRequiredMixin, DetailView):
     model = Song
 
-#
-# class LinkView(InlineFormSetFactory):
-#     model = Link
-#     fields = "__all__"
-#     # prefix = 'item_form'
-#     factory_kwargs = {'extra': 3, 'max_num': None, 'can_order': False, 'can_delete': False}
-#
-#
-# class ChordsView(InlineFormSetFactory):
-#     model = Chord
-#     fields = "__all__"
-#     # prefix = 'item_form'
-#     factory_kwargs = {'extra': 3, 'max_num': 3, 'can_order': False, 'can_delete': False}
 
-
-class SongUpdate(PermissionRequiredMixin, UpdateWithInlinesView): #, NamedFormsetsMixin):
+class SongUpdate(PermissionRequiredMixin, UpdateView):
     form_class = SongForm
     model = Song
     template_name_suffix = '_update_form'
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
-    # inlines = [ChordsView, LinkView]
-    # inlines_names = ['chord', 'link']
 
     def get_success_url(self):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})
         return obj_url
 
 
-class SongCreate(PermissionRequiredMixin, CreateWithInlinesView): #, NamedFormsetsMixin):
+class SongCreate(PermissionRequiredMixin, CreateView):
     form_class = SongForm
     model = Song
     template_name_suffix = '_create_form'
     permission_required = 'is_staff'
     permission_denied_message = 'Only staff can do this'
-    # inlines = [ChordsView, LinkView]
-    # inlines_names = ['chord', 'link']
 
     def get_success_url(self):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})
