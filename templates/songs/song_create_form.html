@@ -169,6 +169,59 @@
                     </div>
                   </div>
 
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.cordsFile1.id_for_label }}">Файл с аккордами 1</label>
+                      {{ form.chordsFile1|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
+                      <div class="help-block with-errors">{{ form.chordsFile1.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.cordsFile2.id_for_label }}">Файл с аккордами 2</label>
+                      {{ form.chordsFile2|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
+                      <div class="help-block with-errors">{{ form.chordsFile2.errors }}</div>
+                    </div>
+                  </div>
+
+                  <div class="clear mb-20"></div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.chordKey1.id_for_label }}">Тональность 1</label>
+                      {{ form.chordKey1|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.chordsFile1.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.chordKey2.id_for_label }}">Тональность 2</label>
+                      {{ form.chordKey2|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.chordKey2.errors }}</div>
+                    </div>
+                  </div>
+<!--                  <div class="clear mb-20"></div>-->
+                  <div class="clear mb-20"></div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.ytb_id1.id_for_label }}">Youtube ID</label>
+                      {{ form.ytb_id1|add_class:"form_control" }}
+                      <div class="help-block with-errors">{{ form.ytb_id1.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.ytb_id2.id_for_label }}">Youtube ID</label>
+                      {{ form.ytb_id2|add_class:"form_control" }}
+                      <div class="help-block with-errors">{{ form.ytb_id2.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.ytb_id3.id_for_label }}">Youtube ID</label>
+                      {{ form.ytb_id3|add_class:"form_control" }}
+                      <div class="help-block with-errors">{{ form.ytb_id3.errors }}</div>
+                    </div>
+                  </div>
 
                   <div class="clear mb-20"></div>
 
