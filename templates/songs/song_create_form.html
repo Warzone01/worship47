@@ -1,13 +1,188 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
 
-{% block title %}New song's create{% endblock %}
+{% block css_addon %}
+  <style>
+    input[type='checkbox'] + label {
+        background: url({% static 'css/images/checkbox_unchecked.png' %}) left center no-repeat;
+    }
+
+    input[type='checkbox']:checked + label {
+        background: url({% static 'css/images/checkbox_checked.png' %}) left center no-repeat;
+    }
+  </style>
+{% endblock %}
 
 {% block content %}
-<form method="post">{% csrf_token %}
-    {{ form.media }}
-    {{ form.as_p }}
-    <input type="submit" value="Сохранить">
-</form>
 
+  <div class="main-wrapper">
+    <div class="breadcrumb-wrapper">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-xs-12 col-sm-6">
+            <h2 class="page-title">Форма добавления песен</h2>
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+            <ol class="breadcrumb">
+              <li><a href="/">Домой</a></li>
+              <li class="active">Форма добавления песен</li>
+            </ol>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <div class="content-wrapper">
+      <div class="container">
+        <div class="section-sm">
+          <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+              <div class="section-title mb-10">
+                <h4 class="text-left">Добавление песен</h4>
+              </div>
+
+              <p>Просто следуйте полям и тому, что в них написано. Если у Вас
+                позник вопрос напишите мне в телеграм, вконтакт или просто
+                позвоните</p>
+
+              <h5 class="mb-15">Краткая инструкция</h5>
+
+              <p>Старайтесь заполнить как можно больше форм, но если не знаете,
+                что вводить форму или просто нечего, оставляйте её пустой. Для
+                добавления текста не отменяя форматирования <br> ctrl+shift+v </p>
+              <p>P.S. если вы не знаете, что вводить в форму, обязательно
+                делайте пометку и присылайте её мне, чтобы мы потом смогли найти
+                пропущенную информацию</p>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-8 col-md-9">
+
+              <div class="section-title mb-10">
+                <h4 class="text-left">Заполните поля:</h4>
+              </div>
+
+              {% block add_song_form %}
+                <form method="post">{% csrf_token %}
+                  {{ form.media }}
+                  {{ form.non_field_errors }}
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.title.id_for_label }}">Название <span class="font10 text-danger">(обязательно)</span></label>
+                      {{ form.title|add_class:"form-control"|append_attr:"placeholder:Название песни" }}
+                      <div class="help-block with-errors">{{ form.title.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.title_eng.id_for_label }}">Title (in english) </label>
+                      {{ form.title_eng|add_class:"form-control"|append_attr:"placeholder:Song's title" }}
+                      <div class="help-block with-errors">{{ form.title_eng.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="{{ form.text.id_for_label }}">Текст песни (рус) </label>
+                      {{ form.text|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.text.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="{{ form.text_eng.id_for_label }}">Song's text (eng) </label>
+                      {{ form.text_eng|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.text_eng.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                      <label for="{{ form.chords.id_for_label }}">Аккорды </label>
+                      {{ form.chords|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.chords.errors }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.presentation.id_for_label }}">Загрузить презентацию</label>
+                      {{ form.presentation|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
+                      <div class="help-block with-errors">{{ form.presentation.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.text_file.id_for_label }}">Загрузить файл с аккордами </label>
+                      {{ form.text_file|add_class:"filestyle"|set_data:"buttonText:Select file"|set_data:"buttonBefore:true" }}
+                      <div class="help-block with-errors">{{ form.text_file.errors }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.author.id_for_label }}">Автор </label>
+                      {{ form.author|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.author.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label for="{{ form.category.id_for_label }}">Категория (выбор нескольких - с Ctrl)</label>
+                      {{ form.category|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.category.errors }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group checkbox-block">
+                      {{ form.is_translated|add_class:"checkbox"|append_attr:"checked:checked" }}
+                      <label for="{{ form.is_translated.id_for_label }}">Это перевод </label>
+                      <div class="help-block with-errors">{{ form.is_translated.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.translator.id_for_label }}">Переводчик </label>
+                      {{ form.translator }}
+                      <div class="help-block with-errors">{{ form.translator.errors }}</div>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group checkbox-block">
+                      <label for="{{ form.main_key.id_for_label }}">Тональность </label>
+                      {{ form.main_key|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.main_key.errors }}</div>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-3">
+                    <div class="form-group">
+                      <label for="{{ form.difficult.id_for_label }}">Трудность </label>
+                      {{ form.difficult|add_class:"form-control" }}
+                      <div class="help-block with-errors">{{ form.difficult.errors }}</div>
+                    </div>
+                  </div>
+
+
+                  <div class="clear mb-20"></div>
+
+                  <div class="clear mb-20"></div>
+
+                  <input class="btn btn-success btn-sm" type="submit" value="Сохранить">
+                </form>
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}
+

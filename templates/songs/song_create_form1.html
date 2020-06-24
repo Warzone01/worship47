@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}New song's create{% endblock %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <input type="submit" value="Сохранить">
+</form>
+
+
+{% endblock %}

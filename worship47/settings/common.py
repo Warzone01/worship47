@@ -46,11 +46,14 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'ckeditor',
     'tagulous',
+    'versatileimagefield',
+    'widget_tweaks',
+    'extra_views',
 ]
 
 LOCAL_APPS = [
     "accounts.apps.AccountsConfig",
-    "songs",
+    "songs",  # .apps.SongsConfig",
 ]
 
 INSTALLED_APPS = PRE_APPS + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
