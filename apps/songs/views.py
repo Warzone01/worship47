@@ -48,7 +48,7 @@ class SongUpdate(PermissionRequiredMixin, UpdateView):
     form_class = SongForm
     model = Song
     template_name_suffix = '_update_form'
-    permission_required = ('songs.add_song', 'songs.change_songs')
+    permission_required = ('songs.add_song', 'songs.change_song')
     permission_denied_message = 'Only staff can do this'
 
     def get_success_url(self):
@@ -60,7 +60,7 @@ class SongCreate(PermissionRequiredMixin, CreateView):
     form_class = SongForm
     model = Song
     template_name_suffix = '_create_form'
-    permission_required = ('songs.add_song', 'songs.change_songs')
+    permission_required = ('songs.add_song', 'songs.change_song')
     permission_denied_message = 'Only staff can do this'
 
     def get_success_url(self):
