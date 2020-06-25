@@ -6,6 +6,9 @@ from pytils import translit
 from tagulous.models import TagField
 from versatileimagefield.fields import VersatileImageField
 
+from accounts.models import User
+
+
 def chords_path(instance, filename):
     ext = filename.split('.')[-1:]
     fname = filename[:filename.rfind('.')]
@@ -116,6 +119,8 @@ class Song(TimeStampedModel):
     ytb_id1 = models.CharField(max_length=100, blank=True)
     ytb_id2 = models.CharField(max_length=100, blank=True)
     ytb_id3 = models.CharField(max_length=100, blank=True)
+
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
 
 
     class Meta:

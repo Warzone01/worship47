@@ -70,7 +70,7 @@ class CategAdmin(ImageWidgetAdmin):
 
 
 class SongAdmin(admin.ModelAdmin):
-    list_display = ['title', 'title_eng', 'translator', 'categ']
+    list_display = ['title', 'title_eng', 'translator', 'categ', 'user']
     # inlines = [LinkInLine, ChordInLine]
 
     def categ(self, obj):
