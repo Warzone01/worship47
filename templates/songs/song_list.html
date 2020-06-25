@@ -73,9 +73,8 @@
                                 <div><i class="fa fa-folder-open"></i> <a
                                     href="#">{% if song.category.all %}
                                   {% for categ in song.category.all %}
-                                    {{ categ.name }}
-                                        {% if song.category.all|length > forloop.counter %}
-                                          ;{% endif %}
+                                    {{ categ.title }}
+                                        {% if song.category.all|length > forloop.counter %};{% endif %}
                                   {% endfor %}
 
                                 {% endif %}
