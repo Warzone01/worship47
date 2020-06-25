@@ -318,8 +318,9 @@
 
 								<div class="blog-item blog-single">
                                     <ul class="blog-meta clearfix">
-                                        <li><div>Категория: <a href="">{% for categ in object.category.all %}
-                                                                      {{ categ.name }}{% if object.category.all|length > forloop.counter %};{% endif %}
+                                        <li><div>Категория: <a href="#">{% for categ in object.category.all %}
+                                                                      	{{ categ.title }}
+																		{% if object.category.all|length > forloop.counter %};{% endif %}
                                                                       {% endfor %}</a></div></li>
                                     </ul>
 
