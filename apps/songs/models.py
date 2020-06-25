@@ -6,18 +6,27 @@ from pytils import translit
 from tagulous.models import TagField
 from versatileimagefield.fields import VersatileImageField
 
+from accounts.models import User
+
+
 def chords_path(instance, filename):
-    path = f"chords/{translit.slugify(filename)}"
+    ext = filename.split('.')[-1:]
+    fname = filename[:filename.rfind('.')]
+    path = f"chords/{translit.slugify(fname)}.{ext}"
     return path
 
 
 def pres_path(instance, filename):
-    path = f"presentations/{translit.slugify(filename)}"
+    ext = filename.split('.')[-1:]
+    fname = filename[:filename.rfind('.')]
+    path = f"presentations/{translit.slugify(fname)}.{ext}"
     return path
 
 
 def text_path(instance, filename):
-    path = f"text/{translit.slugify(filename)}"
+    ext = filename.split('.')[-1:]
+    fname = filename[:filename.rfind('.')]
+    path = f"text/{translit.slugify(fname)}.{ext}"
     return path
 
 
@@ -110,6 +119,8 @@ class Song(TimeStampedModel):
     ytb_id1 = models.CharField(max_length=100, blank=True)
     ytb_id2 = models.CharField(max_length=100, blank=True)
     ytb_id3 = models.CharField(max_length=100, blank=True)
+
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
 
 
     class Meta:
