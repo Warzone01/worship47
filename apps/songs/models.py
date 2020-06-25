@@ -7,17 +7,23 @@ from tagulous.models import TagField
 from versatileimagefield.fields import VersatileImageField
 
 def chords_path(instance, filename):
-    path = f"chords/{translit.slugify(filename)}"
+    ext = filename.split('.')[-1:]
+    fname = filename[:filename.rfind('.')]
+    path = f"chords/{translit.slugify(fname)}.{ext}"
     return path
 
 
 def pres_path(instance, filename):
-    path = f"presentations/{translit.slugify(filename)}"
+    ext = filename.split('.')[-1:]
+    fname = filename[:filename.rfind('.')]
+    path = f"presentations/{translit.slugify(fname)}.{ext}"
     return path
 
 
 def text_path(instance, filename):
-    path = f"text/{translit.slugify(filename)}"
+    ext = filename.split('.')[-1:]
+    fname = filename[:filename.rfind('.')]
+    path = f"text/{translit.slugify(fname)}.{ext}"
     return path
 
 
