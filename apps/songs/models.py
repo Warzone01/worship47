@@ -12,21 +12,21 @@ from accounts.models import User
 def chords_path(instance, filename):
     ext = filename.split('.')[-1:]
     fname = filename[:filename.rfind('.')]
-    path = f"chords/{translit.slugify(fname)}.{ext}"
+    path = f"chords/{translit.slugify(fname)}.{str(ext)}"
     return path
 
 
 def pres_path(instance, filename):
     ext = filename.split('.')[-1:]
     fname = filename[:filename.rfind('.')]
-    path = f"presentations/{translit.slugify(fname)}.{ext}"
+    path = f"presentations/{translit.slugify(fname)}.{str(ext)}"
     return path
 
 
 def text_path(instance, filename):
     ext = filename.split('.')[-1:]
     fname = filename[:filename.rfind('.')]
-    path = f"text/{translit.slugify(fname)}.{ext}"
+    path = f"text/{translit.slugify(fname)}.{str(ext)}"
     return path
 
 

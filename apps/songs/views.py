@@ -67,7 +67,6 @@ class SongCreate(PermissionRequiredMixin, CreateView):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})
         return obj_url
 
-    def get_form_kwargs(self):
-        kwargs = super(SongCreate, self).get_form_kwargs()
-        kwargs['request'] = self.request
-        return kwargs
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

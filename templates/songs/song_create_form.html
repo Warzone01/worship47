@@ -70,7 +70,7 @@
               </div>
 
               {% block add_song_form %}
-                <form method="post">{% csrf_token %}
+                <form method="post" enctype="multipart/form-data">{% csrf_token %}
                   {{ form.media }}
                   {{ form.non_field_errors }}
                   <div class="col-xs-12 col-sm-6">
@@ -226,8 +226,6 @@
                   <div class="clear mb-20"></div>
 
                   <div class="clear mb-20"></div>
-
-                  <input type="hidden" name="user" value="{{ request.user }}" />
 
                   <input class="btn btn-success btn-sm" type="submit" value="Сохранить">
                 </form>
