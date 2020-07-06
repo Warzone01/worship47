@@ -27,7 +27,7 @@ def text_path(instance, filename):
     ext = filename.split('.')[-1:]
     fname = filename[:filename.rfind('.')]
     path = f"text/{translit.slugify(fname)}.{str(ext)}"
-    return path
+    return path 
 
 
 CHORDS = (
