@@ -1,18 +1,14 @@
-from pprint import pprint
-
-from django.contrib.auth.mixins import LoginRequiredMixin, \
-    PermissionRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, get_list_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, DetailView, UpdateView, CreateView, \
-    TemplateView
+from django.views.generic import (CreateView, DetailView, ListView,
+                                  TemplateView, UpdateView)
 
 from .forms import SongForm
-from .models import Category, Song #, Chord, Link
+from .models import Category, Song
 
 
 class Index(TemplateView):
