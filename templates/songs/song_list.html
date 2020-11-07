@@ -93,13 +93,13 @@
                   <div class="pagination">
                     <span class="page-links">
                         {% if page_obj.has_previous %}
-                          <a href="{% url 'songs-list' page_obj.previous_page_number %}{% if categ %}?categ={{ categ }}{% endif %}">предыдущая</a>
+                          <a href="{% url 'songs-list' page_obj.previous_page_number %}{% if categ or search %}?{% endif %}{% if categ %}categ={{ categ }}&{% endif %}{% if search %}search={{ search }}{% endif %}">предыдущая</a>
                         {% endif %}
                       <span class="page-current">
                             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                         </span>
                       {% if page_obj.has_next %}
-                        <a href="{% url 'songs-list' page_obj.next_page_number %}{% if categ %}?categ={{ categ }}{% endif %}">следующая</a>
+                        <a href="{% url 'songs-list' page_obj.next_page_number %}{% if categ or search %}?{% endif %}{% if categ %}categ={{ categ }}&{% endif %}{% if search %}search={{ search }}{% endif %}">следующая</a>
                       {% endif %}
                     </span>
                   </div>
