@@ -28,13 +28,15 @@ class SongList(ListView):
     paginate_by = 10
     context_object_name = 'songs'
     queryset = Song.objects.all()
+    categ = ''
+    search = ''
 
     @method_decorator(csrf_exempt)
     def get(self, request, *args, **kwargs):
         return super(SongList, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        self.extra_context = {'categ': self.categ}
+        self.extra_context = {'categ': self.categ, 'search': self.search}
         kwargs = super(SongList, self).get_context_data(**kwargs)
         return kwargs
 
@@ -42,15 +44,14 @@ class SongList(ListView):
         # Filter by categorie's slug
         qs = super(SongList, self).get_queryset()
         self.categ = self.request.GET.get("categ")
-        search = self.request.GET.get("search")
-        if search:
+        self.search = self.request.GET.get("search")
+        if self.search:
             qs = qs.filter(
-                Q(text__icontains=search) |
-                Q(text_eng__icontains=search)
+                Q(text__icontains=self.search) |
+                Q(text_eng__icontains=self.search)
             )
         elif self.categ:
             qs = qs.filter(category__slug__in=[self.categ])
-
         return qs
 
 
