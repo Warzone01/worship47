@@ -237,7 +237,9 @@
 
 						</ul>
 
-					</div><!--/.nav-collapse -->
+					</div>
+
+					<!--/.nav-collapse -->
 
 					{% if user.is_authenticated %}
 						<div class="pull-right">
@@ -372,18 +374,18 @@
 									{% endif %}
 									<br>
 									<br>
-									{% if object.accords_dwnl %}
-										<a href="{{ object.accords_dwnl.url }}" download="{{ object.name }}">
-											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>
-										</a>
-									{% endif %}
-									<br>
-									{% if object.accords_dwnl2 %}
-										<a href="{{ object.accords_dwnl2.url }}" download="{{ object.name }}">
-											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>
-										</a>
-									{% endif %}
-									<br>
+<!--									{% if object.accords_dwnl %}-->
+<!--										<a href="{{ object.accords_dwnl.url }}" download="{{ object.name }}">-->
+<!--											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>-->
+<!--										</a>-->
+<!--									{% endif %}-->
+<!--									<br>-->
+<!--									{% if object.accords_dwnl2 %}-->
+<!--										<a href="{{ object.accords_dwnl2.url }}" download="{{ object.name }}">-->
+<!--											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>-->
+<!--										</a>-->
+<!--									{% endif %}-->
+<!--									<br>-->
 									{% if object.text_dwnl %}
 										<a href="{{ object.text_dwnl.url }}" download="{{ object.name }}">
 											<button type="button" class="btn btn-primary btn-sm">Скачать текст</button>
@@ -396,7 +398,6 @@
 											{% if object.chordKey1 %}
 													Тональность: {{ object.chordKey1 }}
 											{% endif %}
-
 										</a>
 									{% endif %}
 									<br>
@@ -465,11 +466,6 @@
 <!--{#										</div>#}-->
 <!--{#									</div>#}-->
 
-									
-
-									
-
-									
 									<div class="clear"></div>
 									
 								</div>
@@ -506,10 +502,10 @@
 										<h4 class="sidebar-title">Категории</h4>
 										<div class="sidebar-module-inner">
 											<ul class="sidebar-category">
-												<li><a href="">Основные</a></li>
-												<li><a href="">Детские</a></li>
-												<li><a href="">Пасхальные</a></li>
-												<li><a href="">Рождественские</a></li>
+												<li><a href="/songs/list/?categ=main">Основные</a></li>
+												<li><a href="/songs/list/?categ=kids">Детские</a></li>
+												<li><a href="/songs/list/?categ=easter">Пасхальные</a></li>
+												<li><a href="/songs/list/?categ=christmas">Рождественские</a></li>
 											</ul>
 										</div>
 									</div>
@@ -528,23 +524,6 @@
 
             <div class="footer-wrapper scrollspy-footer">
 
-			<footer class="main-footer">
-
-				<div class="container">
-
-					<div class="row">
-
-						<div class="col-xs-12 col-sm-12 col-sm-4 col-md-3 mb-30-xs">
-
-
-						</div>
-					</div>
-
-					<div class="bb mt-40"></div>
-					<div class="mb-40"></div>
-				</div>
-
-			</footer>
 
 			<footer class="secondary-footer">
 
