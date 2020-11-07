@@ -1,47 +1,28 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block content %}
-
   <div class="main-wrapper">
-
     <div class="breadcrumb-wrapper">
-
       <div class="container">
-
         <div class="row">
-
           <div class="col-xs-12 col-sm-6">
             <h2 class="page-title">Список песен</h2>
           </div>
-
-
         </div>
-
       </div>
-
     </div>
 
-
     <div class="content-wrapper pt-50 pb-20">
-
       <div class="container">
-
         <div class="row">
-
           <div class="col-xs-12 col-sm-8 col-md-9 mb-30">
-
             <div class="blog-wrapper">
-
               {% if user.is_staff %}
-
                 <a data-toggle="modal" href="/songs/song/"
                    class="btn btn-primary btn-sm">Создать новую песню</a>
                 <br>
                 <br>
-
-
               {% endif %}
 
               {% block songs %}
@@ -52,15 +33,11 @@
                       <div class="blog-media">
                         <div class="overlay-box">
                           <a class="blog-image" href="detail.html">
-
                           </a>
                         </div>
                       </div>
-
                       <div class="blog-content">
-
                         <div class="row">
-
                           <div class="col-xs-12 col-sm-12 col-md-5 mb-20-sm">
                             <h3><a
                                 href="{% url 'song-detail' song.id %}">{{ song.title }}</a>
@@ -103,41 +80,32 @@
                                 class="fa fa-long-arrow-right"></i></a>
 
                           </div>
-
                         </div>
-
                       </div>
-
                     </div>
-
                   {% endfor %}
                 </ul>
                 {% if is_paginated %}
                   <div class="pagination">
-                                            <span class="page-links">
-                                                {% if page_obj.has_previous %}
-                                                  <a href="{% url 'songs-list' page_obj.previous_page_number %}">предыдущая</a>
-                                                {% endif %}
-                                              <span class="page-current">
-                                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                                                </span>
-                                              {% if page_obj.has_next %}
-                                                <a href="{% url 'songs-list' page_obj.next_page_number %}">следующая</a>
-                                              {% endif %}
-                                            </span>
+                    <span class="page-links">
+                        {% if page_obj.has_previous %}
+                          <a href="{% url 'songs-list' page_obj.previous_page_number %}{% if categ %}?categ={{ categ }}{% endif %}">предыдущая</a>
+                        {% endif %}
+                      <span class="page-current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                      {% if page_obj.has_next %}
+                        <a href="{% url 'songs-list' page_obj.next_page_number %}{% if categ %}?categ={{ categ }}{% endif %}">следующая</a>
+                      {% endif %}
+                    </span>
                   </div>
                 {% endif %}
               {% endblock %}
 
-
             </div>
-
             <div class="clear"></div>
-
             <div class="pager-wrappper clearfix">
-
               <div class="pager-innner">
-
                 <div class="flex-row flex-align-middle">
 
                   <!--{#										<div class="flex-column flex-sm-12">#}-->
@@ -169,17 +137,12 @@
                   <!--{#										</div>#}-->
 
                 </div>
-
               </div>
-
             </div>
-
           </div>
 
           <div class="col-xs-12 col-sm-4 col-md-3">
-
             <aside class="sidebar">
-
               <div class="sidebar-inner">
                 <form action="/song/" method="POST">
                   <!--{#                                        {% csrf_token %}#}-->
@@ -219,15 +182,9 @@
                 </div>
               </div>
             </aside>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   </div>
-
 {% endblock %}
