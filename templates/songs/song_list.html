@@ -27,6 +27,7 @@
 
               {% block songs %}
                 <ul>
+                {% if songs %}
                   {% for song in songs %}
                     <div class="blog-item">
                       <hr>
@@ -84,6 +85,9 @@
                       </div>
                     </div>
                   {% endfor %}
+                {% else %}
+                  Не удалось найти песни с такой комбинацие слов. Попробуйте изменит или упростить запрос.
+                {% endif %}
                 </ul>
                 {% if is_paginated %}
                   <div class="pagination">
