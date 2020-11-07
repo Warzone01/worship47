@@ -1,10 +1,12 @@
+import threading
+
 from django.contrib import admin
 from django.contrib.admin import register
 from django.contrib.admin.widgets import AdminFileWidget
 from django.utils.safestring import mark_safe
 from tagulous import admin as tagadmin
-import threading
-from .models import Song, Category #Link, Chord,
+
+from .models import Category, Song  # Link, Chord,
 
 
 class AdminImageWidget(AdminFileWidget):

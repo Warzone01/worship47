@@ -18,8 +18,8 @@
                 любые слова песни в поиске!</p>
             </div>
           </div>
-          <form action="/song/" method="POST">
-            {#                            {% csrf_token %}#}
+          <form action="{% url 'songs-list-first' %}" method="GET">
+{#                                        {% csrf_token %}#}
             <div class="col-md-8 col-md-offset-2">
 
               <div class="input-group-search-form-wrapper size-lg">
@@ -27,7 +27,7 @@
                 <div class="input-group bg-change-focus-addclass">
                   <input id="search" type="text" class="form-control"
                          placeholder="Начните поиск прямо сейчас"
-                         value="{{ current_name }}" name="search">
+                         value="" name="search">
                   <input id="categ" type="text" value="" hidden name="categ">
                   <div class="input-group-btn dropdown-select">
                     <div class="dropdown dropdown-select">
@@ -124,7 +124,7 @@
               <div class="col-xss-12 col-xs-6 col-sm-6">
                 <div class="category-image-bg"
                      style="background-image:url({{ categ.image.url }});">
-                  <a href="/songs/list/?categ={{ categ.slug }}">
+                  <a href="{% url 'songs-list-first' %}?categ={{ categ.slug }}">
 										<span class="text">
 											{{ categ.title }}
 										</span>

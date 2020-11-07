@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
+from accounts.models import User
 from ckeditor.fields import RichTextField
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
 from pytils import translit
 from tagulous.models import TagField
 from versatileimagefield.fields import VersatileImageField
-
-from accounts.models import User
 
 
 def chords_path(instance, filename):

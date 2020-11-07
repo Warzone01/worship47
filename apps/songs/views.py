@@ -1,15 +1,14 @@
-from pprint import pprint
-
-from django.contrib.auth.mixins import LoginRequiredMixin, \
-    PermissionRequiredMixin
-from django.contrib.auth.views import LoginView
-from django.shortcuts import get_object_or_404, get_list_or_404
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
+from django.db.models import Q
 from django.urls import reverse
-from django.views.generic import ListView, DetailView, UpdateView, CreateView, \
-    TemplateView
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import (CreateView, DetailView, ListView,
+                                  TemplateView, UpdateView)
 
 from .forms import SongForm
-from .models import Category, Song #, Chord, Link
+from .models import Category, Song
 
 
 class Index(TemplateView):
@@ -30,9 +29,12 @@ class SongList(ListView):
     context_object_name = 'songs'
     queryset = Song.objects.all()
 
+    @method_decorator(csrf_exempt)
+    def get(self, request, *args, **kwargs):
+        return super(SongList, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         self.extra_context = {'categ': self.categ}
-
         kwargs = super(SongList, self).get_context_data(**kwargs)
         return kwargs
 
@@ -40,10 +42,18 @@ class SongList(ListView):
         # Filter by categorie's slug
         qs = super(SongList, self).get_queryset()
         self.categ = self.request.GET.get("categ")
-        if self.categ:
-            return qs.filter(category__slug__in=[self.categ])
-        else:
-            return qs
+        search = self.request.GET.get("search")
+        print(search)
+        if search:
+            qs = qs.filter(
+                Q(text__icontains=search) |
+                Q(text_eng__icontains=search)
+            )
+            print(qs)
+        elif self.categ:
+            qs = qs.filter(category__slug__in=[self.categ])
+
+        return qs
 
 
 class SongDetail(LoginRequiredMixin, DetailView):
