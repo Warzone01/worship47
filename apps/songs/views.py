@@ -30,12 +30,18 @@ class SongList(ListView):
     context_object_name = 'songs'
     queryset = Song.objects.all()
 
+    def get_context_data(self, **kwargs):
+        self.extra_context = {'categ': self.categ}
+
+        kwargs = super(SongList, self).get_context_data(**kwargs)
+        return kwargs
+
     def get_queryset(self):
         # Filter by categorie's slug
         qs = super(SongList, self).get_queryset()
-        categ = self.request.GET.get("categ")
-        if categ:
-            return qs.filter(category__slug__in=[categ])
+        self.categ = self.request.GET.get("categ")
+        if self.categ:
+            return qs.filter(category__slug__in=[self.categ])
         else:
             return qs
 
