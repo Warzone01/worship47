@@ -24,7 +24,7 @@ class Index(TemplateView):
 
 class SongList(ListView):
     model = Song
-    allow_empty = False
+    allow_empty = True
     paginate_by = 10
     context_object_name = 'songs'
     queryset = Song.objects.all()
@@ -43,13 +43,11 @@ class SongList(ListView):
         qs = super(SongList, self).get_queryset()
         self.categ = self.request.GET.get("categ")
         search = self.request.GET.get("search")
-        print(search)
         if search:
             qs = qs.filter(
                 Q(text__icontains=search) |
                 Q(text_eng__icontains=search)
             )
-            print(qs)
         elif self.categ:
             qs = qs.filter(category__slug__in=[self.categ])
 
