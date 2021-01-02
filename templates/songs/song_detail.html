@@ -231,7 +231,7 @@
 								<a href="/">Домой</a>
 							</li>
 							<li>
-								<a href="/songs/list/">Список песен</a>
+								<a href="{% url 'songs-list-first' %}">Список песен</a>
 
 							</li>
 
@@ -334,35 +334,35 @@
 
 
 										<ul class="nav nav-tabs">
-                                            <li class="active"><a data-toggle="tab" href="#home">Русский</a></li>
-                                            {%  if object.text_eng %}
-                                                <li><a data-toggle="tab" href="#menu1">Английский</a></li>
-                                            {% endif %}
-                                            {% if object.chords %}
-                                                <li><a data-toggle="tab" href="#menu2">Аккорды</a></li>
-                                            {% endif %}
-                                        </ul>
+                        <li class="active"><a data-toggle="tab" href="#home">Русский</a></li>
+                        {%  if object.text_eng %}
+                            <li><a data-toggle="tab" href="#menu1">Английский</a></li>
+                        {% endif %}
+                        {% if object.chords %}
+                            <li><a data-toggle="tab" href="#menu2">Аккорды</a></li>
+                        {% endif %}
+                    </ul>
 
-                                        <div class="tab-content">
-                                            <div id="home" class="tab-pane fade in active">
-                                                <p></p>
-                                                <h5>{{ object.text | safe}}</h5>
-                                            </div>
-                                            {% if object.text_eng %}
-                                                <div id="menu1" class="tab-pane fade">
-                                                    <p></p>
-                                                    <h5>{{ object.text_eng | safe}}</h5>
-                                                </div>
-                                            {% endif %}
-                                            {% if object.chords %}
-                                                <div id="menu2" class="tab-pane fade">
-                                                    <p></p>
-                                                    <h5>{{ object.chords | safe }}</h5>
-                                                </div>
-                                            {% endif %}
-                                        </div>
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
+                            <p></p>
+                            <h5>{{ object.text | safe}}</h5>
+                        </div>
+                        {% if object.text_eng %}
+                            <div id="menu1" class="tab-pane fade">
+                                <p></p>
+                                <h5>{{ object.text_eng | safe}}</h5>
+                            </div>
+                        {% endif %}
+                        {% if object.chords %}
+                            <div id="menu2" class="tab-pane fade">
+                                <p></p>
+                                <h5>{{ object.chords | safe }}</h5>
+                            </div>
+                        {% endif %}
+                    </div>
 
-                                    <hr>
+                    <hr>
 
 
 									</div>
@@ -374,18 +374,18 @@
 									{% endif %}
 									<br>
 									<br>
-<!--									{% if object.accords_dwnl %}-->
-<!--										<a href="{{ object.accords_dwnl.url }}" download="{{ object.name }}">-->
-<!--											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>-->
-<!--										</a>-->
-<!--									{% endif %}-->
-<!--									<br>-->
-<!--									{% if object.accords_dwnl2 %}-->
-<!--										<a href="{{ object.accords_dwnl2.url }}" download="{{ object.name }}">-->
-<!--											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>-->
-<!--										</a>-->
-<!--									{% endif %}-->
-<!--									<br>-->
+{#<!--									{% if object.accords_dwnl %}-->#}
+{#<!--										<a href="{{ object.accords_dwnl.url }}" download="{{ object.name }}">-->#}
+{#<!--											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>-->#}
+{#<!--										</a>-->#}
+{#<!--									{% endif %}-->#}
+{#<!--									<br>-->#}
+{#<!--									{% if object.accords_dwnl2 %}-->#}
+{#<!--										<a href="{{ object.accords_dwnl2.url }}" download="{{ object.name }}">-->#}
+{#<!--											<button type="button" class="btn btn-primary btn-sm">Скачать аккорды</button>-->#}
+{#<!--										</a>-->#}
+{#<!--									{% endif %}-->#}
+{#<!--									<br>-->#}
 									{% if object.text_dwnl %}
 										<a href="{{ object.text_dwnl.url }}" download="{{ object.name }}">
 											<button type="button" class="btn btn-primary btn-sm">Скачать текст</button>
@@ -416,55 +416,27 @@
 									{% if object.ytb_id1 %}
 										<div class="embed-responsive embed-responsive-16by9">
 											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ object.ytb_id1 }}" allowfullscreen></iframe>
-										</div></iframe>
+										</div>
 									{% endif %}
 									<br>
 									<br>
 									{% if object.ytb_id2 %}
 										<div class="embed-responsive embed-responsive-16by9">
 											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ object.ytb_id2 }}" allowfullscreen></iframe>
-										</div></iframe>
+										</div>
 									{% endif %}
 									<br>
 									<br>
 									{% if object.ytb_id3 %}
 										<div class="embed-responsive embed-responsive-16by9">
 											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ object.ytb_id3 }}" allowfullscreen></iframe>
-										</div></iframe>
+										</div>
 									{% endif %}
 									<br>
 									<br>
 									{%if user.is_staff %}
-                                        <a href="{% url 'song-update' song.id %}"><b>edit</b></a>
+                    <a href="{% url 'song-update' song.id %}"><b>edit</b></a>
 									{% endif %}
-
-<!--{#									<div class="blog-extra">#}-->
-<!--{#										<div class="row">#}-->
-<!--{#											<div class="col-xs-12 col-sm-6 col-md-7 xs-mb">#}-->
-<!--{#											#}-->
-<!--{#												<div class="tag-cloud clearfix mt-0">#}-->
-<!--{#													<span><i class="fa fa-tags"></i> tags: </span>#}-->
-<!--{#													<a href="#" class="tag-item">HTML5</a> <a href="#" class="tag-item">CSS3</a> <a href="#" class="tag-item">jQuery</a> #}-->
-<!--{#													<a href="#" class="tag-item">Creative</a> #}-->
-<!--{#												</div>#}-->
-<!--{#												#}-->
-<!--{#											</div>#}-->
-<!--{#											#}-->
-<!--{#											<div class="col-xs-12 col-sm-6 col-md-5 xs-mb">#}-->
-<!--{#												<ul class="social-share-sm mt-5 pull-right pull-left-xs mt-20-xs">#}-->
-<!--{#																		#}-->
-<!--{#													<li><span><i class="fa fa-share-square"></i> share</span></li>#}-->
-<!--{#													<li class="the-label"><a href="#">Facebook</a></li>#}-->
-<!--{#													<li class="the-label"><a href="#">Twitter</a></li>#}-->
-<!--{#													<li class="the-label"><a href="#">Google Plus</a></li>#}-->
-<!--{#													#}-->
-<!--{#												</ul>#}-->
-<!--{#											</div>#}-->
-<!--{#											#}-->
-<!--{#											<div class="clear"></div>#}-->
-<!--{#											#}-->
-<!--{#										</div>#}-->
-<!--{#									</div>#}-->
 
 									<div class="clear"></div>
 									
@@ -480,32 +452,33 @@
 								
 								<div class="sidebar-inner">
 								
-									<form action="/song/" method="POST">{% csrf_token %}
-                                        <div class="sidebar-module">
-                                            <div class="sidebar-module-inner">
-                                                <div class="sidebar-mini-search">
-                                                    <div class="input-group">
-                                                        <input id="search" name="search" type="text" class="form-control" placeholder="Поиск..." value="{{ current_name }}">
-                                                        <span class="input-group-btn">
-                                                            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+									<form action="{% url 'songs-list-first' %}" method="GET">
+                    {# {% csrf_token %} #}
+                    <div class="sidebar-module">
+                        <div class="sidebar-module-inner">
+                            <div class="sidebar-mini-search">
+                                <div class="input-group">
+                                    <input id="search" name="search" type="text" class="form-control" placeholder="Поиск..." value="{{ current_name }}">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </form>
 									
 									<div class="clear"></div>
 									
 									<div class="sidebar-module">
-                                        <p></p>
+                    <p></p>
 										<h4 class="sidebar-title">Категории</h4>
 										<div class="sidebar-module-inner">
 											<ul class="sidebar-category">
-												<li><a href="/songs/list/?categ=main">Основные</a></li>
-												<li><a href="/songs/list/?categ=kids">Детские</a></li>
-												<li><a href="/songs/list/?categ=easter">Пасхальные</a></li>
-												<li><a href="/songs/list/?categ=christmas">Рождественские</a></li>
+												<li><a href="{% url 'songs-list-first' %}?categ=main">Основные</a></li>
+												<li><a href="{% url 'songs-list-first' %}?categ=kids">Детские</a></li>
+												<li><a href="{% url 'songs-list-first' %}?categ=easter">Пасхальные</a></li>
+												<li><a href="{% url 'songs-list-first' %}?categ=christmas">Рождественские</a></li>
 											</ul>
 										</div>
 									</div>
