@@ -255,4 +255,4 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
 }
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
