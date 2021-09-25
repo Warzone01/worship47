@@ -1,12 +1,10 @@
-import threading
-
 from django.contrib import admin
 from django.contrib.admin import register
 from django.contrib.admin.widgets import AdminFileWidget
 from django.utils.safestring import mark_safe
 from tagulous import admin as tagadmin
 
-from .models import Category, Song  # Link, Chord,
+from .models import Category, Song
 
 
 class AdminImageWidget(AdminFileWidget):
@@ -61,19 +59,9 @@ class CategAdmin(ImageWidgetAdmin):
     admin_image.allow_tags = True
 
 
-# class LinkInLine(admin.StackedInline):
-#     model = Link
-#     extra = 0
-#
-#
-# class ChordInLine(admin.StackedInline):
-#     model = Chord
-#     extra = 0
-
-
 class SongAdmin(admin.ModelAdmin):
     list_display = ['title', 'title_eng', 'translator', 'categ', 'user']
-    # inlines = [LinkInLine, ChordInLine]
+    search_fields = ['title', 'title_eng', 'text', 'text_eng']
 
     def categ(self, obj):
         categs = []
@@ -81,7 +69,14 @@ class SongAdmin(admin.ModelAdmin):
             categs.append(f"{c.title} ({c.slug})")
         return ' || '.join(categs)
 
+    def get_queryset(self, request):
+        qs = super(SongAdmin, self).get_queryset(request)
+        qs = qs.prefetch_related(
+            'category',
+        ).select_related(
+            'user',
+        )
+        return qs
+
 
 tagadmin.register(Song, SongAdmin)
-# admin.site.register(Link)
-# admin.site.register(Chord)

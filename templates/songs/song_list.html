@@ -7,7 +7,11 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-6">
-            <h2 class="page-title">Список песен</h2>
+            {% if search %}
+              <h2 class="page-title">Результаты поиска: {{ search_count }}</h2>
+            {% else %}
+              <h2 class="page-title">Список песен</h2>
+            {% endif %}
           </div>
         </div>
       </div>

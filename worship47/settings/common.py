@@ -42,6 +42,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
 ]
 
 THIRD_PARTY_APPS = [
@@ -255,4 +256,4 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
 }
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

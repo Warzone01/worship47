@@ -64,29 +64,6 @@ class Category(models.Model):
         return self.title
 
 
-# class Link(TimeStampedModel):
-#     song = models.ForeignKey('Song', on_delete=models.CASCADE,
-#                              related_name='ext_links')
-#     url = models.CharField(max_length=256, null=True, blank=True)
-#     ytb_id = models.CharField(max_length=20, blank=True, null=True,
-#                               help_text="Youtube ID for video embedding")
-#     description = models.TextField(blank=True, default='')
-#
-#     def __str__(self):
-#         return f"Link for {self.song.title}"
-#
-#
-# class Chord(TimeStampedModel):
-#     song = models.ForeignKey('Song', on_delete=models.CASCADE,
-#                              related_name='chord_files')
-#     chords = models.FileField(upload_to='chords/', blank=True)
-#     key = models.CharField(max_length=2, choices=CHORDS,
-#                            default="E", blank=True)
-#
-#     def __str__(self):
-#         return f'"{self.key}" chords for {self.song.title}'
-
-
 class Song(TimeStampedModel):
     title = models.CharField(max_length=255, blank=True)
     title_eng = models.CharField(max_length=255, blank=True)
