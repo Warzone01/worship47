@@ -60,7 +60,7 @@ class CategAdmin(ImageWidgetAdmin):
 
 
 class SongAdmin(admin.ModelAdmin):
-    list_display = ['title', 'title_eng', 'translator', 'categ', 'user']
+    list_display = ['title', 'title_eng', 'translator', 'categ', 'user', 'modified']
     search_fields = ['title', 'title_eng', 'text', 'text_eng']
 
     def categ(self, obj):
@@ -80,3 +80,4 @@ class SongAdmin(admin.ModelAdmin):
 
 
 tagadmin.register(Song, SongAdmin)
+tagadmin.register(Song.translator)

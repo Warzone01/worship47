@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import path
 from songs.views import SongCreate, SongDetail, SongList, SongUpdate
 
 urlpatterns = [

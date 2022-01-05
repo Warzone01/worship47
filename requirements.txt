@@ -1,8 +1,8 @@
-Django<3.3
+Django<4.0
 django-debug-toolbar
 django-environ
 django-extensions
-django-ckeditor==6.0.0
+django-ckeditor==6.2.0
 Pillow
 pytils
 django-tagulous
@@ -10,4 +10,3 @@ django-versatileimagefield
 django-widget-tweaks
 django-extra-views
 djangorestframework
-djangorestframework-simplejwt
