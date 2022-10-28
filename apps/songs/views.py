@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
-from django.contrib.postgres.search import SearchVector, TrigramSimilarity
-from django.db.models import Q
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -53,32 +52,27 @@ class SongList(ListView):
         self.search = self.request.GET.get('search')
 
         if self.search:
-            vector = SearchVector(
+            search_vector = SearchVector(
                 'title',
                 'title_eng',
                 'text',
                 'text_eng',
                 'author',
             )
-            vector_trgm = TrigramSimilarity(
-                'title',
-                self.search,
-            ) + TrigramSimilarity(
-                'title_eng',
-                self.search,
-            ) + TrigramSimilarity(
-                'text',
-                self.search,
-            ) + TrigramSimilarity(
-                'text_eng',
-                self.search,
-            ) + TrigramSimilarity(
-                'author',
+            search_query = SearchQuery(
                 self.search,
             )
+            search_rank = SearchRank(search_vector, search_query)
 
-            qs = qs.annotate(search=vector).filter(search=self.search) or \
-                   qs.annotate(similarity=vector_trgm).filter(similarity__gt=0.2)
+            qs = qs.annotate(
+                search=search_vector,
+                rank=search_rank,
+            ).filter(
+                search=search_query,
+                rank__gte=0.5,
+            ).order_by(
+                '-rank',
+            )
 
         elif self.categ:
             qs = qs.filter(category__slug__in=[self.categ])
