@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-6">
             {% if search %}
-              <h2 class="page-title">Результаты поиска: {{ search_count }}</h2>
+              <h2 class="page-title">Результаты поиска: {{ songs|length }}</h2>
             {% else %}
               <h2 class="page-title">Список песен</h2>
             {% endif %}

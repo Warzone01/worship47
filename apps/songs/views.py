@@ -9,6 +9,7 @@ from django.views.generic import (CreateView, DetailView, ListView,
 
 from .forms import SongForm
 from .models import Category, Song
+from .services import AntiYoService
 
 
 class Index(TemplateView):
@@ -30,28 +31,27 @@ class SongList(ListView):
     queryset = Song.objects.all()
     categ = ''
     search = ''
-    qs_length = 0
 
     @method_decorator(csrf_exempt)
     def get(self, request, *args, **kwargs):
+        self.categ = self.request.GET.get('categ')
+        self.search = self.request.GET.get('search')
         return super(SongList, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         self.extra_context = {
             'categ': self.categ,
             'search': self.search,
-            'search_count': self.qs_length,
         }
         kwargs = super(SongList, self).get_context_data(**kwargs)
         return kwargs
 
     def get_queryset(self):
-        # Filter by categorie's slug
         qs = super(SongList, self).get_queryset()
-        self.categ = self.request.GET.get('categ')
-        self.search = self.request.GET.get('search')
+        qs = qs.prefetch_related('category')
 
         if self.search:
+            self.search = AntiYoService().cleanup_yo(self.search)
             search_vector = SearchVector(
                 'title',
                 'title_eng',
@@ -74,10 +74,10 @@ class SongList(ListView):
                 '-rank',
             )
 
-        elif self.categ:
+        # Filter by categorie's slug
+        if self.categ:
             qs = qs.filter(category__slug__in=[self.categ])
 
-        self.qs_length = len(qs)
         return qs
 
 
@@ -96,6 +96,19 @@ class SongUpdate(PermissionRequiredMixin, UpdateView):
         obj_url = reverse('song-detail', kwargs={'pk': self.object.id})
         return obj_url
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.title = AntiYoService().cleanup_yo(obj.title)
+            obj.text = AntiYoService().cleanup_yo(obj.text)
+            obj.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+
 
 class SongCreate(PermissionRequiredMixin, CreateView):
     form_class = SongForm
@@ -111,3 +124,15 @@ class SongCreate(PermissionRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.title = AntiYoService().cleanup_yo(obj.title)
+            obj.text = AntiYoService().cleanup_yo(obj.text)
+            obj.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
