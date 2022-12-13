@@ -1,14 +1,12 @@
-from django.contrib.auth.mixins import (LoginRequiredMixin,
-                                        PermissionRequiredMixin)
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.urls import reverse
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, TemplateView
 from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import (CreateView, DetailView, ListView,
-                                  TemplateView, UpdateView)
+from django.contrib.postgres.search import SearchRank, SearchQuery, SearchVector
 
 from .forms import SongForm
-from .models import Category, Song
+from .models import Song, Category
 from .services import AntiYoService
 
 
@@ -50,6 +48,10 @@ class SongList(ListView):
         qs = super(SongList, self).get_queryset()
         qs = qs.prefetch_related('category')
 
+        # Filter by categorie's slug
+        if self.categ:
+            qs = qs.filter(category__slug__in=[self.categ])
+
         if self.search:
             self.search = AntiYoService().cleanup_yo(self.search)
             search_vector = SearchVector(
@@ -69,14 +71,10 @@ class SongList(ListView):
                 rank=search_rank,
             ).filter(
                 search=search_query,
-                rank__gte=0.5,
             ).order_by(
                 '-rank',
             )
-
-        # Filter by categorie's slug
-        if self.categ:
-            qs = qs.filter(category__slug__in=[self.categ])
+            qs = qs[:9]
 
         return qs
 

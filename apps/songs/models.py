@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
+from pytils import translit
 from accounts.models import User
 from ckeditor.fields import RichTextField
-from django.db import models
-from django_extensions.db.models import TimeStampedModel
-from pytils import translit
 from tagulous.models import TagField
 from versatileimagefield.fields import VersatileImageField
+
+from django.db import models
 
 
 def chords_path(instance, filename):
@@ -64,7 +63,7 @@ class Category(models.Model):
         return self.title
 
 
-class Song(TimeStampedModel):
+class Song(models.Model):
     title = models.CharField(max_length=255, blank=True)
     title_eng = models.CharField(max_length=255, blank=True)
     text = RichTextField(blank=True)
@@ -97,7 +96,8 @@ class Song(TimeStampedModel):
     ytb_id3 = models.CharField(max_length=100, blank=True)
 
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
-
+    created = models.DateTimeField(auto_now_add=True, blank=True)
+    modified = models.DateTimeField(auto_now=True, blank=True)
 
     class Meta:
         ordering = ['id']

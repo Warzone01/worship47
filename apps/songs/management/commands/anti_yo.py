@@ -1,7 +1,7 @@
-from django.core.management.base import BaseCommand
-
 from songs.models import Song
 from songs.services import AntiYoService
+
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):

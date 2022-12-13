@@ -41,7 +41,7 @@ THIRD_PARTY_APPS = [
     'tagulous',
     'versatileimagefield',
     'widget_tweaks',
-    'extra_views',
+    # 'extra_views',
     'rest_framework',
     'rest_framework.authtoken',
 ]

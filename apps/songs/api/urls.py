@@ -1,5 +1,4 @@
 from rest_framework import routers
-
 from songs.api.views import SongViewSetRO
 
 router = routers.SimpleRouter()

@@ -1,9 +1,9 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm
-from .models import Profile, User
+from .models import User, Profile
 
 
 class ProfileInline(admin.TabularInline):

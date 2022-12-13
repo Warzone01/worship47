@@ -1,10 +1,11 @@
-from django.contrib import admin
-from django.contrib.admin import register
-from django.contrib.admin.widgets import AdminFileWidget
-from django.utils.safestring import mark_safe
 from tagulous import admin as tagadmin
 
-from .models import Category, Song
+from django.contrib import admin
+from django.contrib.admin import register
+from django.utils.safestring import mark_safe
+from django.contrib.admin.widgets import AdminFileWidget
+
+from .models import Song, Category
 
 
 class AdminImageWidget(AdminFileWidget):
@@ -62,6 +63,7 @@ class CategAdmin(ImageWidgetAdmin):
 class SongAdmin(admin.ModelAdmin):
     list_display = ['title', 'title_eng', 'translator', 'categ', 'user', 'modified']
     search_fields = ['title', 'title_eng', 'text', 'text_eng']
+    readonly_fields = ['created', 'modified']
 
     def categ(self, obj):
         categs = []

@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-6">
             {% if search %}
-              <h2 class="page-title">Результаты поиска: {{ songs|length }}</h2>
+              <h2 class="page-title">Результаты поиска по словам "<u>{{ search }}</u>": {{ songs|length }}</h2>
             {% else %}
               <h2 class="page-title">Список песен</h2>
             {% endif %}
@@ -154,7 +154,7 @@
                         <div class="input-group">
                           <input id="search" name="search" type="text"
                                  class="form-control" placeholder="Поиск..."
-                                 value="{{ current_name }}">
+                                 value="{{ search }}">
                           <span class="input-group-btn">
                             <button
                                 class="btn btn-primary"

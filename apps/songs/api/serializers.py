@@ -1,6 +1,5 @@
-from rest_framework.serializers import ModelSerializer
-
 from songs.models import Song
+from rest_framework.serializers import ModelSerializer
 
 
 class SongSerializer(ModelSerializer):

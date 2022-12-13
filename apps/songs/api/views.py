@@ -1,10 +1,10 @@
 from datetime import datetime
 
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
-from .serializers import SongSerializer
 from ..models import Song
+from .serializers import SongSerializer
 
 
 class SongViewSetRO(ReadOnlyModelViewSet):
