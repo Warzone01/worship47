@@ -1,3 +1,5 @@
+from typing import Any
+
 from pytils import translit
 from accounts.models import User
 from ckeditor.fields import RichTextField
@@ -7,46 +9,46 @@ from versatileimagefield.fields import VersatileImageField
 from django.db import models
 
 
-def chords_path(instance, filename):
+def chords_path(instance: Any, filename: str) -> str:
     ext = filename.split('.')[-1:]
     fname = filename[:filename.rfind('.')]
-    path = f"chords/{translit.slugify(fname)}.{str(ext)}"
+    path = f'chords/{translit.slugify(fname)}.{str(ext)}'
     return path
 
 
-def pres_path(instance, filename):
+def pres_path(instance: Any, filename: str) -> str:
     ext = filename.split('.')[-1:]
     fname = filename[:filename.rfind('.')]
-    path = f"presentations/{translit.slugify(fname)}.{str(ext)}"
+    path = f'presentations/{translit.slugify(fname)}.{str(ext)}'
     return path
 
 
-def text_path(instance, filename):
+def text_path(instance: Any, filename: str) -> str:
     ext = filename.split('.')[-1:]
     fname = filename[:filename.rfind('.')]
-    path = f"text/{translit.slugify(fname)}.{str(ext)}"
-    return path 
+    path = f'text/{translit.slugify(fname)}.{str(ext)}'
+    return path
 
 
 CHORDS = (
-    ("C","C"),
-    ("C#","C#"),
-    ("D","D"),
-    ("D#","D#"),
-    ("E","E"),
-    ("F","F"),
-    ("F#","F#"),
-    ("G","G"),
-    ("G#","G#"),
-    ("A","A"),
-    ("A#","A#"),
-    ("B","B"),
+    ('C', 'C'),
+    ('C#', 'C#'),
+    ('D', 'D'),
+    ('D#', 'D#'),
+    ('E', 'E'),
+    ('F', 'F'),
+    ('F#', 'F#'),
+    ('G', 'G'),
+    ('G#', 'G#'),
+    ('A', 'A'),
+    ('A#', 'A#'),
+    ('B', 'B'),
 )
 
 DIFFICULT = (
-    ("easy", "Easy"),
-    ("medium", "Medium"),
-    ("hard", "Hard"),
+    ('easy', 'Easy'),
+    ('medium', 'Medium'),
+    ('hard', 'Hard'),
 )
 
 
@@ -59,7 +61,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
 
@@ -80,16 +82,24 @@ class Song(models.Model):
         blank=True,
     )
     main_key = models.CharField(max_length=2, choices=CHORDS,
-                                default="E", blank=True)
+                                default='E', blank=True)
     difficult = models.CharField(max_length=6, choices=DIFFICULT,
-                                 default="easy", blank=True)
+                                 default='easy', blank=True)
 
     chordsFile1 = models.FileField(upload_to=chords_path, blank=True)
-    chordKey1 = models.CharField(max_length=2, choices=CHORDS,
-                            default="E", blank=True)
+    chordKey1 = models.CharField(
+        max_length=2,
+        choices=CHORDS,
+        default='E',
+        blank=True,
+    )
     chordsFile2 = models.FileField(upload_to=chords_path, blank=True)
-    chordKey2 = models.CharField(max_length=2, choices=CHORDS,
-                            default="E", blank=True)
+    chordKey2 = models.CharField(
+        max_length=2,
+        choices=CHORDS,
+        default='E',
+        blank=True,
+    )
 
     ytb_id1 = models.CharField(max_length=100, blank=True)
     ytb_id2 = models.CharField(max_length=100, blank=True)
@@ -102,8 +112,8 @@ class Song(models.Model):
     class Meta:
         ordering = ['id']
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.title_eng:
-            return f"{self.title} | {self.title_eng}"
+            return f'{self.title} | {self.title_eng}'
         else:
             return self.title

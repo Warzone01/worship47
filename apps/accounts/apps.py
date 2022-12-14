@@ -6,7 +6,7 @@ class AccountsConfig(AppConfig):
     name = 'accounts'
     verbose_name = _("Accounts")
 
-    def ready(self):
+    def ready(self) -> None:
         try:
             import accounts.signals  # noqa F401
         except ImportError:

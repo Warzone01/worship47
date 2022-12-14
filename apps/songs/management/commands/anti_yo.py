@@ -5,9 +5,9 @@ from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    help = 'Cleanup YO chars in textxs and titles'
+    help = 'Cleanup YO chars in texts and titles'
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **options):  # NoQA
         all_songs = Song.objects.all()
         counter = 0
         for song in all_songs:
@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
             if fields_to_save:
                 song.save(update_fields=fields_to_save)
-                print(song.id, fields_to_save)
+                print(song.id, fields_to_save)  # NoQA
                 counter += 1
 
-        print(f'Fixed {counter} songs')
+        print(f'Fixed {counter} songs')  # NoQA
